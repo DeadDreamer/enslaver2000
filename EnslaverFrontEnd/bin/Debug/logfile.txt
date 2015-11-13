@@ -1,0 +1,29 @@
+08.11.2015 14:36:03|Info|=>Message-> Ожидание закончилось вследствие освобождения семафора. | StackTrace->    в System.Threading.WaitHandle.InternalWaitOne(SafeHandle waitableSafeHandle, Int64 millisecondsTimeout, Boolean hasThreadAffinity, Boolean exitContext)
+   в System.Threading.WaitHandle.WaitOne(Int32 millisecondsTimeout, Boolean exitContext)
+   в System.Threading.WaitHandle.WaitOne(Int32 millisecondsTimeout)
+   в EnslaverCore.Logic.ParameterizedLock.RunWithLock(String key, Action body) в e:\DOCs\Programming\My_progs\NowIWorkOn\Enslaver2000\Enslaver2000\Enslaver2000\EnslaverCore\Logic\ParameterizedLock.cs:строка 74
+   в EnslaverFrontEnd.Program.RunAsGuardian() в e:\DOCs\Programming\My_progs\NowIWorkOn\Enslaver2000\Enslaver2000\Enslaver2000\EnslaverFrontEnd\Program.cs:строка 46 | Source-> mscorlib | InnerException-> 08.11.2015 15:00:22|Info|=>Message-> Ожидание закончилось вследствие освобождения семафора. | StackTrace->    в System.Threading.WaitHandle.InternalWaitOne(SafeHandle waitableSafeHandle, Int64 millisecondsTimeout, Boolean hasThreadAffinity, Boolean exitContext)
+   в System.Threading.WaitHandle.WaitOne(Int32 millisecondsTimeout, Boolean exitContext)
+   в System.Threading.WaitHandle.WaitOne(Int32 millisecondsTimeout)
+   в EnslaverCore.Logic.ParameterizedLock.RunWithLock(String key, Action body) в e:\DOCs\Programming\My_progs\NowIWorkOn\Enslaver2000\Enslaver2000\Enslaver2000\EnslaverCore\Logic\ParameterizedLock.cs:строка 74
+   в EnslaverFrontEnd.Program.RunAsGuardian() в e:\DOCs\Programming\My_progs\NowIWorkOn\Enslaver2000\Enslaver2000\Enslaver2000\EnslaverFrontEnd\Program.cs:строка 48 | Source-> mscorlib | InnerException-> 08.11.2015 15:00:29|Info|=>Message-> Ожидание закончилось вследствие освобождения семафора. | StackTrace->    в System.Threading.WaitHandle.InternalWaitOne(SafeHandle waitableSafeHandle, Int64 millisecondsTimeout, Boolean hasThreadAffinity, Boolean exitContext)
+   в System.Threading.WaitHandle.WaitOne(Int32 millisecondsTimeout, Boolean exitContext)
+   в System.Threading.WaitHandle.WaitOne(Int32 millisecondsTimeout)
+   в EnslaverCore.Logic.ParameterizedLock.RunWithLock(String key, Action body) в e:\DOCs\Programming\My_progs\NowIWorkOn\Enslaver2000\Enslaver2000\Enslaver2000\EnslaverCore\Logic\ParameterizedLock.cs:строка 74
+   в EnslaverFrontEnd.Program.RunAsGuardian() в e:\DOCs\Programming\My_progs\NowIWorkOn\Enslaver2000\Enslaver2000\Enslaver2000\EnslaverFrontEnd\Program.cs:строка 48 | Source-> mscorlib | InnerException-> 08.11.2015 15:04:19|Info|=>Message-> Ожидание закончилось вследствие освобождения семафора. | StackTrace->    в System.Threading.WaitHandle.InternalWaitOne(SafeHandle waitableSafeHandle, Int64 millisecondsTimeout, Boolean hasThreadAffinity, Boolean exitContext)
+   в System.Threading.WaitHandle.WaitOne(Int32 millisecondsTimeout, Boolean exitContext)
+   в System.Threading.WaitHandle.WaitOne(Int32 millisecondsTimeout)
+   в EnslaverCore.Logic.ParameterizedLock.RunWithLock(String key, Action body) в e:\DOCs\Programming\My_progs\NowIWorkOn\Enslaver2000\Enslaver2000\Enslaver2000\EnslaverCore\Logic\ParameterizedLock.cs:строка 74
+   в EnslaverFrontEnd.Program.RunAsGuardian() в e:\DOCs\Programming\My_progs\NowIWorkOn\Enslaver2000\Enslaver2000\Enslaver2000\EnslaverFrontEnd\Program.cs:строка 48 | Source-> mscorlib | InnerException-> 08.11.2015 15:04:32|Info|=>Message-> Ожидание закончилось вследствие освобождения семафора. | StackTrace->    в System.Threading.WaitHandle.InternalWaitOne(SafeHandle waitableSafeHandle, Int64 millisecondsTimeout, Boolean hasThreadAffinity, Boolean exitContext)
+   в System.Threading.WaitHandle.WaitOne(Int32 millisecondsTimeout, Boolean exitContext)
+   в System.Threading.WaitHandle.WaitOne(Int32 millisecondsTimeout)
+   в EnslaverCore.Logic.ParameterizedLock.RunWithLock(String key, Action body) в e:\DOCs\Programming\My_progs\NowIWorkOn\Enslaver2000\Enslaver2000\Enslaver2000\EnslaverCore\Logic\ParameterizedLock.cs:строка 74
+   в EnslaverFrontEnd.Program.RunAsGuardian() в e:\DOCs\Programming\My_progs\NowIWorkOn\Enslaver2000\Enslaver2000\Enslaver2000\EnslaverFrontEnd\Program.cs:строка 48 | Source-> mscorlib | InnerException-> 08.11.2015 15:10:26|Info|=>Message-> Ожидание закончилось вследствие освобождения семафора. | StackTrace->    в System.Threading.WaitHandle.InternalWaitOne(SafeHandle waitableSafeHandle, Int64 millisecondsTimeout, Boolean hasThreadAffinity, Boolean exitContext)
+   в System.Threading.WaitHandle.WaitOne(Int32 millisecondsTimeout, Boolean exitContext)
+   в System.Threading.WaitHandle.WaitOne(Int32 millisecondsTimeout)
+   в EnslaverCore.Logic.ParameterizedLock.RunWithLock(String key, Action body) в e:\DOCs\Programming\My_progs\NowIWorkOn\Enslaver2000\Enslaver2000\Enslaver2000\EnslaverCore\Logic\ParameterizedLock.cs:строка 74
+   в EnslaverFrontEnd.Program.RunAsGuardian() в e:\DOCs\Programming\My_progs\NowIWorkOn\Enslaver2000\Enslaver2000\Enslaver2000\EnslaverFrontEnd\Program.cs:строка 48 | Source-> mscorlib | InnerException-> 08.11.2015 15:10:41|Info|=>Message-> Ожидание закончилось вследствие освобождения семафора. | StackTrace->    в System.Threading.WaitHandle.InternalWaitOne(SafeHandle waitableSafeHandle, Int64 millisecondsTimeout, Boolean hasThreadAffinity, Boolean exitContext)
+   в System.Threading.WaitHandle.WaitOne(Int32 millisecondsTimeout, Boolean exitContext)
+   в System.Threading.WaitHandle.WaitOne(Int32 millisecondsTimeout)
+   в EnslaverCore.Logic.ParameterizedLock.RunWithLock(String key, Action body) в e:\DOCs\Programming\My_progs\NowIWorkOn\Enslaver2000\Enslaver2000\Enslaver2000\EnslaverCore\Logic\ParameterizedLock.cs:строка 74
+   в EnslaverFrontEnd.Program.RunAsGuardian() в e:\DOCs\Programming\My_progs\NowIWorkOn\Enslaver2000\Enslaver2000\Enslaver2000\EnslaverFrontEnd\Program.cs:строка 48 | Source-> mscorlib | InnerException-> 
