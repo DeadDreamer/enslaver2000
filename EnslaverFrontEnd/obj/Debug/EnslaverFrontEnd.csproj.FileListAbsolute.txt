@@ -118,3 +118,6 @@ C:\Users\am.kuznecov\Desktop\Enslaver2000\EnslaverFrontEnd\obj\Debug\EnslaverFro
 C:\Users\am.kuznecov\Desktop\Enslaver2000\EnslaverFrontEnd\obj\Debug\EnslaverFrontEnd.csproj.GenerateResource.Cache
 C:\Users\am.kuznecov\Desktop\Enslaver2000\EnslaverFrontEnd\obj\Debug\Enslaver.exe
 C:\Users\am.kuznecov\Desktop\Enslaver2000\EnslaverFrontEnd\obj\Debug\Enslaver.pdb
+E:\P2000\EnslaverFrontEnd\bin\Debug\Enslaver.exe.config
+E:\P2000\EnslaverFrontEnd\obj\Debug\Enslaver.exe
+E:\P2000\EnslaverFrontEnd\obj\Debug\Enslaver.pdb
