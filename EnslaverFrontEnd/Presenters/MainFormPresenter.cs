@@ -26,8 +26,8 @@ namespace EnslaverFrontEnd.Presenters
             (this.View as IMainView).OnStartOrStopClick += MainFormPresenter_OnStartOrStopClick;
             (this.View as IMainView).OnAdminClick += new EventHandler<EventArgs>(MainFormPresenter_OnAdminClick);
 
-            timer.Elapsed += new System.Timers.ElapsedEventHandler(timer_Elapsed);
-            timer.Start();
+       //     timer.Elapsed += new System.Timers.ElapsedEventHandler(timer_Elapsed);
+        //    timer.Start();
             System.Windows.Forms.Application.Idle += new EventHandler(Application_Idle);
             AppGlobalContext.GetInstance().CamHelper.OnNewFrame += CamHelper_OnNewFrame;
         }
@@ -74,13 +74,13 @@ namespace EnslaverFrontEnd.Presenters
                     }
 
                     //Показываем новую форму...
-                /*    object messageBody = (object)(new MessageBodyOfWarningForm(messageInfo, uriToVideoPath));
+                    object messageBody = (object)(new MessageBodyOfWarningForm(messageInfo, ""));
                     System.Threading.Thread thread = new System.Threading.Thread(() =>
                     {
                         AppGlobalContext.GetInstance().ShowForm(null, (long)FormTypes.WarningForm, new FormMessage() { Body = messageBody });
                     });
                     thread.SetApartmentState(System.Threading.ApartmentState.STA);
-                    thread.Start();*/                   
+                    thread.Start();
 
                 }
             }
