@@ -88,6 +88,7 @@
     <Compile Include="Logic\Sound\SoundStorage.cs" />
     <Compile Include="Logic\Sound\Speaker.cs" />
     <Compile Include="Logic\Sound\YandexSpeechKitCloudUrl.cs" />
+    <Compile Include="Logic\UserStates.cs" />
     <Compile Include="Models\Constants.cs" />
     <Compile Include="Models\LogType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

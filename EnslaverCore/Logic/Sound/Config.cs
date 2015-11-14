@@ -7,14 +7,6 @@ using System.IO;
 
 namespace EnslaverCore.Logic.Sound
 {
-    public enum UserStates : int
-    {
-        Fine = 0,
-        Smiling = 1,
-        EyesNotFound = 2,
-        HeadNotFound = 3
-    }
-
     [Serializable]
     public class UserStatePhrases
     {
