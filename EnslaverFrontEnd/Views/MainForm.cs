@@ -145,7 +145,7 @@ namespace EnslaverFrontEnd.Views
 
         private void TestButton_Click(object sender, EventArgs e)
         {
-            object messageBody=(object)(new MessageBodyOfWarningForm (AlertTestTextBox.Text, ""));
+            object messageBody = (object)(new MessageBodyOfWarningForm(AlertTestTextBox.Text, VideoFileTextBox.Text));
             AppGlobalContext.GetInstance().ShowForm(this, (long)FormTypes.WarningForm, new FormMessage() { Body = messageBody });
         }
 

@@ -350,7 +350,7 @@ namespace EnslaverCore.Logic
 
         public static bool WriteBytesAtOnce(IntPtr handlerOfMapView, byte[] bytes)
         {
-            if (handlerOfMapView != IntPtr.Zero)
+            /*if (handlerOfMapView != IntPtr.Zero)
             {
                 Lock.RunWithLock(LockKey, () =>
                 {
@@ -369,7 +369,7 @@ namespace EnslaverCore.Logic
             else
             {
                 throw new Exception("Не задан handler!");
-            }
+            }*/
         }
 
         /// <summary>

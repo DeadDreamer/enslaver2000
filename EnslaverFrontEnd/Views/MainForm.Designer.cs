@@ -26,6 +26,9 @@ namespace EnslaverFrontEnd.Views
             this.DeviseHeaderLabel = new System.Windows.Forms.Label();
             this.TestButton = new System.Windows.Forms.Button();
             this.AlertTestTextBox = new System.Windows.Forms.TextBox();
+            this.VideoFileTextBox = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -75,7 +78,7 @@ namespace EnslaverFrontEnd.Views
             // 
             // TestButton
             // 
-            this.TestButton.Location = new System.Drawing.Point(749, 287);
+            this.TestButton.Location = new System.Drawing.Point(563, 357);
             this.TestButton.Name = "TestButton";
             this.TestButton.Size = new System.Drawing.Size(75, 23);
             this.TestButton.TabIndex = 4;
@@ -85,16 +88,44 @@ namespace EnslaverFrontEnd.Views
             // 
             // AlertTestTextBox
             // 
-            this.AlertTestTextBox.Location = new System.Drawing.Point(563, 290);
+            this.AlertTestTextBox.Location = new System.Drawing.Point(563, 277);
             this.AlertTestTextBox.Name = "AlertTestTextBox";
             this.AlertTestTextBox.Size = new System.Drawing.Size(180, 20);
             this.AlertTestTextBox.TabIndex = 5;
+            // 
+            // VideoFileTextBox
+            // 
+            this.VideoFileTextBox.Location = new System.Drawing.Point(563, 331);
+            this.VideoFileTextBox.Name = "VideoFileTextBox";
+            this.VideoFileTextBox.Size = new System.Drawing.Size(261, 20);
+            this.VideoFileTextBox.TabIndex = 6;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(563, 258);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(93, 13);
+            this.label1.TabIndex = 7;
+            this.label1.Text = "Warning Message";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(563, 315);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(86, 13);
+            this.label2.TabIndex = 8;
+            this.label2.Text = "Path to video file";
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(836, 439);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.VideoFileTextBox);
             this.Controls.Add(this.AlertTestTextBox);
             this.Controls.Add(this.TestButton);
             this.Controls.Add(this.DeviseHeaderLabel);
@@ -128,5 +159,8 @@ namespace EnslaverFrontEnd.Views
         private Label DeviseHeaderLabel;
         private Button TestButton;
         private TextBox AlertTestTextBox;
+        private TextBox VideoFileTextBox;
+        private Label label1;
+        private Label label2;
     }
 }
