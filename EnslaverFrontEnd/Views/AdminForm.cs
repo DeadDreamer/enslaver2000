@@ -33,36 +33,27 @@ namespace EnslaverFrontEnd.Views
         int ContTrain, NumLabels, t;
         string name, names = null;
 
+        public AdminForm(FormFactory currentFormFactory, FormMessage someMessage)
+            : base(currentFormFactory)
+        {
+            InitForm();
+        }
 
+        public AdminForm(FormFactory currentFormFactory): base(currentFormFactory)
+        {
+            InitForm();
+        }
         public AdminForm()
         {
-            InitThisForm();
+            InitForm();
         }
 
-        public AdminForm(FormFactory currentFormFactory)
-            : base(currentFormFactory)
+        public void InitForm()
         {
-            InitThisForm();
-        }
-
-        public AdminForm(FormFactory currentFormFactory, FormMessage formMessage)
-            : base(currentFormFactory)
-        {
-            InitThisForm();
-        }
-        private void InitThisForm()
-        {
-            InitEmgu();
-            Presenter = new EnslaverFrontEnd.Presenters.AdminFormPresenter(this);
-            InitializeComponent();
-            TryRaiseEvent(Init, EventArgs.Empty);
             
-        }
-
-        private void InitEmgu()
-        {
             InitializeComponent();
-
+            Presenter = new EnslaverFrontEnd.Presenters.AdminFormPresenter(this);
+            TryRaiseEvent(Init, EventArgs.Empty);
             //Load haarcascades for face detection
             face = new HaarCascade("haarcascade_frontalface_default.xml");
             eye = new HaarCascade("haarcascade_eye.xml");
@@ -98,58 +89,66 @@ namespace EnslaverFrontEnd.Views
                 MessageBox.Show("Nothing in binary database, please add at least a face(Simply train the prototype with the Add Face Button).", "Triained faces load", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
 
-        }
-
-        public event EventHandler<EventArgs> Init;
-
-        public event EventHandler<EventArgs> ExitClick;
-
-        public event EventHandler<EventArgs> OnStartClick;
-
-        public event EventHandler<EventArgs> OnStopClick;
-
-        public event EventHandler<EventArgs> OnTeachClick;
-
-        public string GetUserName()
-        {
-            return "";
-            //return UserTextBox.Text;
-        }
-
-        private void StartButton_Click(object sender, EventArgs e)
-        {
-            TryRaiseEvent(OnStartClick, e);
-
-        }
-
-        private void StopButton_Click(object sender, EventArgs e)
-        {
-            TryRaiseEvent(OnStopClick, e);
-        }
-
-        private void TeachButton_Click(object sender, EventArgs e)
-        {
-            TryRaiseEvent(OnTeachClick, e);
+            this.Show();
         }
 
 
-        public Capture GetCapture()
+        private void TeachButton_Click(object sender, System.EventArgs e)
         {
-            return grabber;
-        }
-
-
-        public void SetImage(IImage someImage)
-        {
-            lock (typeof(AdminForm))
+            try
             {
-                imageBoxFrameGrabber.Image = someImage;
+                //Trained face counter
+                ContTrain = ContTrain + 1;
+
+                //Get a gray frame from capture device
+                gray = grabber.QueryGrayFrame().Resize(320, 240, Emgu.CV.CvEnum.INTER.CV_INTER_CUBIC);
+
+                //Face Detector
+                MCvAvgComp[][] facesDetected = gray.DetectHaarCascade(
+                face,
+                1.2,
+                10,
+                Emgu.CV.CvEnum.HAAR_DETECTION_TYPE.DO_CANNY_PRUNING,
+                new Size(20, 20));
+
+                //Action for each element detected
+                foreach (MCvAvgComp f in facesDetected[0])
+                {
+                    TrainedFace = currentFrame.Copy(f.rect).Convert<Gray, byte>();
+                    break;
+                }
+
+                //resize face detected image for force to compare the same size with the 
+                //test image with cubic interpolation type method
+                TrainedFace = result.Resize(100, 100, Emgu.CV.CvEnum.INTER.CV_INTER_CUBIC);
+                trainingImages.Add(TrainedFace);
+                labels.Add(UserNameTextBox.Text);
+
+                //Show face added in gray scale
+                TeachedImage.Image = TrainedFace;
+
+                //Write the number of triained faces in a file text for further load
+                File.WriteAllText(Application.StartupPath + "/TrainedFaces/TrainedLabels.txt", trainingImages.ToArray().Length.ToString() + "%");
+
+                //Write the labels of triained faces in a file text for further load
+                for (int i = 1; i < trainingImages.ToArray().Length + 1; i++)
+                {
+                    trainingImages.ToArray()[i - 1].Save(Application.StartupPath + "/TrainedFaces/face" + i + ".bmp");
+                    File.AppendAllText(Application.StartupPath + "/TrainedFaces/TrainedLabels.txt", labels.ToArray()[i - 1] + "%");
+                }
+
+                // MessageBox.Show("Лицо " + textBox1.Text + " обнаружено и запомнено", "Обучение прошло успешно", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch
+            {
+                MessageBox.Show("Enable the face detection first", "Training Fail", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
 
+
         void FrameGrabber(object sender, EventArgs e)
         {
-            label3.Text = "0";
+            CountOfFacesLabel.Text = "0";
             //label4.Text = "";
             NamePersons.Add("");
 
@@ -201,7 +200,7 @@ namespace EnslaverFrontEnd.Views
 
 
                 //Set the number of faces detected on the scene
-                label3.Text = facesDetected[0].Length.ToString();
+                CountOfFacesLabel.Text = facesDetected[0].Length.ToString();
 
 
                 //Set the region of interest on the faces
@@ -268,63 +267,165 @@ namespace EnslaverFrontEnd.Views
             }
             //Show the faces procesed and recognized
             imageBoxFrameGrabber.Image = currentFrame.Resize(800, 600, INTER.CV_INTER_CUBIC);
-            label4.Text = names;
+            ListOfUserLabel.Text = names;
             names = "";
             //Clear the list(vector) of names
             NamePersons.Clear();
 
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        /*
+        Capture grabber = new Capture();
+        public AdminForm()
         {
-            try
-            {
-                //Trained face counter
-                ContTrain = ContTrain + 1;
+            InitThisForm();
+        }
 
-                //Get a gray frame from capture device
-                gray = grabber.QueryGrayFrame().Resize(320, 240, Emgu.CV.CvEnum.INTER.CV_INTER_CUBIC);
+        public AdminForm(FormFactory currentFormFactory)
+            : base(currentFormFactory)
+        {
+            InitThisForm();
+        }
 
-                //Face Detector
-                MCvAvgComp[][] facesDetected = gray.DetectHaarCascade(
-                face,
-                1.2,
-                10,
-                Emgu.CV.CvEnum.HAAR_DETECTION_TYPE.DO_CANNY_PRUNING,
-                new Size(20, 20));
+        public AdminForm(FormFactory currentFormFactory, FormMessage formMessage)
+            : base(currentFormFactory)
+        {
+            InitThisForm();
+        }
+        private void InitThisForm()
+        {
+            InitEmgu();
+            Presenter = new EnslaverFrontEnd.Presenters.AdminFormPresenter(this);
+            InitializeComponent();
+            TryRaiseEvent(Init, EventArgs.Empty);
 
-                //Action for each element detected
-                foreach (MCvAvgComp f in facesDetected[0])
-                {
-                    TrainedFace = currentFrame.Copy(f.rect).Convert<Gray, byte>();
-                    break;
-                }
+        }
 
-                //resize face detected image for force to compare the same size with the 
-                //test image with cubic interpolation type method
-                TrainedFace = result.Resize(100, 100, Emgu.CV.CvEnum.INTER.CV_INTER_CUBIC);
-                trainingImages.Add(TrainedFace);
-                labels.Add(textBox1.Text);
+        private void InitEmgu()
+        {
+            InitializeComponent();
 
-                //Show face added in gray scale
-                imageBox1.Image = TrainedFace;
+        }
 
-                //Write the number of triained faces in a file text for further load
-                File.WriteAllText(Application.StartupPath + "/TrainedFaces/TrainedLabels.txt", trainingImages.ToArray().Length.ToString() + "%");
+        public event EventHandler<EventArgs> Init;
 
-                //Write the labels of triained faces in a file text for further load
-                for (int i = 1; i < trainingImages.ToArray().Length + 1; i++)
-                {
-                    trainingImages.ToArray()[i - 1].Save(Application.StartupPath + "/TrainedFaces/face" + i + ".bmp");
-                    File.AppendAllText(Application.StartupPath + "/TrainedFaces/TrainedLabels.txt", labels.ToArray()[i - 1] + "%");
-                }
+        public event EventHandler<EventArgs> ExitClick;
 
-                // MessageBox.Show("Лицо " + textBox1.Text + " обнаружено и запомнено", "Обучение прошло успешно", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            catch
-            {
-                MessageBox.Show("Enable the face detection first", "Training Fail", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-            }
+        public event EventHandler<EventArgs> OnStartClick;
+
+        public event EventHandler<EventArgs> OnStopClick;
+
+        public event EventHandler<EventArgs> OnTeachClick;
+
+        public string GetUserName()
+        {
+            return UserNameTextBox.Text;
+        }
+
+        private void StartButton_Click(object sender, EventArgs e)
+        {
+            TryRaiseEvent(OnStartClick, e);
+
+        }
+
+        private void StopButton_Click(object sender, EventArgs e)
+        {
+            TryRaiseEvent(OnStopClick, e);
+        }
+
+        private void TeachButton_Click(object sender, EventArgs e)
+        {
+            TryRaiseEvent(OnTeachClick, e);
+        }
+
+
+        public Capture GetCapture()
+        {            
+            return grabber;
+        }
+
+
+        public void SetImage(IImage someImage)
+        {
+            imageBoxFrameGrabber.Image = someImage;
+        }
+
+
+        public void SetListOfUsers(string listOfUsers)
+        {
+            ListOfUserLabel.Text = listOfUsers;
+        }
+
+        public void SetCountOfUsers(string countOfUsers)
+        {
+            CountOfFacesLabel.Text = countOfUsers;
+        }
+
+
+        public void SetTrainedName(string name)
+        {
+
+        }
+
+        public void SetTrainedImage(IImage someImage)
+        {
+            TeachedImage.Image = someImage;
+        }*/
+
+        public event EventHandler<EventArgs> OnStartClick;
+
+        public event EventHandler<EventArgs> OnStopClick;
+
+        public event EventHandler<EventArgs> OnTeachClick;
+
+        public string GetUserName()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void SetListOfUsers(string listOfUsers)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void SetCountOfUsers(string countOfUsers)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void SetTrainedName(string name)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void SetTrainedImage(IImage someImage)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Capture GetCapture()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void SetImage(IImage someImage)
+        {
+            throw new NotImplementedException();
+        }
+
+        public event EventHandler<EventArgs> Init;
+
+        public event EventHandler<EventArgs> ExitClick;
+
+
+        
+        
+        public void CloseView()
+        {
+            this.Hide();
+            //Application.Idle -= new EventHandler(FrameGrabber);
+
+            //ForceClose();
         }
     }
 }

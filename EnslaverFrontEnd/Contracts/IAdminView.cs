@@ -13,6 +13,12 @@ namespace EnslaverFrontEnd.Contracts
         event EventHandler<EventArgs> OnStopClick;
         event EventHandler<EventArgs> OnTeachClick;
         string GetUserName();
+        void SetListOfUsers(string listOfUsers);
+        void SetCountOfUsers(string countOfUsers);
+        void SetTrainedName(string name);
+        void SetTrainedImage(IImage someImage);
+        void CloseView();
+
         Capture GetCapture();
         void SetImage(IImage someImage);
     }

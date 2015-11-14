@@ -29,7 +29,7 @@ namespace EnslaverFrontEnd.Presenters
 
        //     timer.Elapsed += new System.Timers.ElapsedEventHandler(timer_Elapsed);
         //    timer.Start();
-            System.Windows.Forms.Application.Idle += new EventHandler(Application_Idle);
+           // System.Windows.Forms.Application.Idle += new EventHandler(Application_Idle);
             AppGlobalContext.GetInstance().CamHelper.OnNewFrame += CamHelper_OnNewFrame;
         }
 
