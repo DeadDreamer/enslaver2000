@@ -11,11 +11,47 @@ using EnslaverFrontEnd.Logic;
 using EnslaverFrontEnd.Models;
 using EnslaverFrontEnd.Presenters;
 
+using System.Runtime.InteropServices;
+using System.Security.Principal;
+using System.Diagnostics;
+using System.Windows.Forms;
+
+
+
 namespace EnslaverFrontEnd.Views
 {
     public partial class WarningForm : BaseForm, IWarningView
     {
         const int HeightMargins = 10;
+        // Structure contain information about low-level keyboard input event
+        [StructLayout(LayoutKind.Sequential)]
+
+        private struct KBDLLHOOKSTRUCT
+        {
+            public Keys key;
+            public int scanCode;
+            public int flags;
+            public int time;
+            public IntPtr extra;
+        }
+
+        //System level functions to be used for hook and unhook keyboard input
+        private delegate IntPtr LowLevelKeyboardProc(int nCode, IntPtr wParam, IntPtr lParam);
+        [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
+        private static extern IntPtr SetWindowsHookEx(int id, LowLevelKeyboardProc callback, IntPtr hMod, uint dwThreadId);
+        [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
+        private static extern bool UnhookWindowsHookEx(IntPtr hook);
+        [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
+        private static extern IntPtr CallNextHookEx(IntPtr hook, int nCode, IntPtr wp, IntPtr lp);
+        [DllImport("kernel32.dll", CharSet = CharSet.Auto, SetLastError = true)]
+        private static extern IntPtr GetModuleHandle(string name);
+        [DllImport("user32.dll", CharSet = CharSet.Auto)]
+        private static extern short GetAsyncKeyState(Keys key);
+
+
+        //Declaring Global objects
+        private IntPtr ptrHook;
+        private LowLevelKeyboardProc objKeyboardProcess;
 
         public WarningForm()
         {

@@ -11,11 +11,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Runtime.InteropServices;
 
 namespace EnslaverFrontEnd
 {
     public partial class BaseForm : Form
     {
+
+      
+
         public BaseForm()
         {
             InitializeComponent();
@@ -66,7 +70,5 @@ namespace EnslaverFrontEnd
         {
             CurrentFormFactory.DeleteForm(this);
         }
-
-
     }
 }
