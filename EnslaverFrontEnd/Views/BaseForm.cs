@@ -17,9 +17,6 @@ namespace EnslaverFrontEnd
 {
     public partial class BaseForm : Form
     {
-
-      
-
         public BaseForm()
         {
             InitializeComponent();

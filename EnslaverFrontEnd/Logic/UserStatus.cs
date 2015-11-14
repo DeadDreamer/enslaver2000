@@ -34,7 +34,7 @@ namespace EnslaverFrontEnd.Logic
 
     class UserStatus
     {
-        List<User> users;
+        private List<User> users=new List<User>();
         int frameCounter;
         DateTime last = DateTime.Now;
         const int accuracyMargin = 90;
@@ -66,6 +66,19 @@ namespace EnslaverFrontEnd.Logic
             }
             frameCounter = 0;
             last = DateTime.Now;
+        }
+
+        public UserStates GetUserStatus(string owner)
+        {
+            if (users != null)
+            {
+                User ownerUser = users.Find(c => c.name == owner);
+                if (ownerUser != null)
+                {
+                    return GetUserStatus(ownerUser);
+                }
+            }
+            return UserStates.HeadNotFound;
         }
 
         public UserStates GetUserStatus(User u)
