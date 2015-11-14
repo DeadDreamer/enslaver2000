@@ -37,6 +37,7 @@ namespace EnslaverFrontEnd.Views
             Presenter = new EnslaverFrontEnd.Presenters.MainFormPresenter(this);
             InitializeComponent();
             TryRaiseEvent(Init, EventArgs.Empty);
+            this.Visible = false;
         }
 
         protected override void Dispose(bool disposing)
@@ -155,7 +156,16 @@ namespace EnslaverFrontEnd.Views
             StartOrStopTrackingButton.Text = (isActive) ? "Stop tracking..." : "Start tracking...";
         }
 
-
         public event EventHandler<EventArgs> OnAdminClick;
+
+        /// <summary>
+        /// Сами себя скроем ...
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void MainForm_VisibleChanged(object sender, EventArgs e)
+        {
+            this.Visible = AppGlobalContext.GetInstance().IsDebug;
+        }
     }
 }

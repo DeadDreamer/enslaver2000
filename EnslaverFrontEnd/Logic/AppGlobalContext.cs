@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Configuration; 
+using System.Configuration;
 
 namespace EnslaverFrontEnd.Logic
 {
@@ -14,6 +14,7 @@ namespace EnslaverFrontEnd.Logic
     {
         //Здесь будет хранится  тот, чей компьютер
         public string Owner = "";
+        public bool IsDebug = false;
 
         public static IntPtr FileMapHandler = IntPtr.Zero, HandlerOfMapView = IntPtr.Zero;
 
@@ -102,7 +103,8 @@ namespace EnslaverFrontEnd.Logic
             {
                 if (_startForm == null)
                 {
-                    _startForm = new MainForm(this);
+                    _startForm = new MainForm(this) { Visible = IsDebug};
+
                 }
                 return _startForm;
             }
