@@ -16,7 +16,14 @@ namespace EnslaverFrontEnd.Presenters
         {
             (this.View as IMainView).OnChangeCamDevice += MainFormPresenter_OnChangeCamDevice;
             (this.View as IMainView).OnStartOrStopClick += MainFormPresenter_OnStartOrStopClick;
+            (this.View as IMainView).OnAdminClick += new EventHandler<EventArgs>(MainFormPresenter_OnAdminClick);
             AppGlobalContext.GetInstance().CamHelper.OnNewFrame += CamHelper_OnNewFrame;
+        }
+
+        void MainFormPresenter_OnAdminClick(object sender, EventArgs e)
+        {
+            
+            AppGlobalContext.GetInstance().ShowForm(null, (long)FormTypes.AdminForm, new FormMessage() { });
         }
 
         void CamHelper_OnNewFrame(object sender, EnslaverCore.Logic.CamEvent e)

@@ -8,5 +8,6 @@ namespace EnslaverFrontEnd.Contracts
     public interface IWarningView : IBaseView
     {
         void ShowWarningMessage(string text);
+        void ShowVideo(string uri);
     }
 }

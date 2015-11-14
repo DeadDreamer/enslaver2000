@@ -109,7 +109,6 @@ namespace EnslaverFrontEnd.Views
             this.ResumeLayout(false);
             this.PerformLayout();
 
-            CustomSettings();
         }
 
 

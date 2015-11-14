@@ -54,6 +54,11 @@ namespace EnslaverFrontEnd.Views
                 ExitClick(this, new EventArgs());
         }
 
+        private void AdminIcon_ExitClick(object sender, EventArgs e)
+        {
+            TryRaiseEvent(OnAdminClick, EventArgs.Empty);            
+        }
+
         private void NotifyIcon_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             // Set the WindowState to normal if the form is minimized.
@@ -70,7 +75,7 @@ namespace EnslaverFrontEnd.Views
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            this.NotifyIcon.ContextMenu = new ContextMenu(new MenuItem[] { new MenuItem("Закрыть!", this.NotifyIcon_ExitClick) });
+            this.NotifyIcon.ContextMenu = new ContextMenu(new MenuItem[] { new MenuItem("Закрыть!", this.NotifyIcon_ExitClick) ,  });
         }
 
 
@@ -148,5 +153,8 @@ namespace EnslaverFrontEnd.Views
         {
             StartOrStopTrackingButton.Text = (isActive) ? "Stop tracking..." : "Start tracking...";
         }
+
+
+        public event EventHandler<EventArgs> OnAdminClick;
     }
 }

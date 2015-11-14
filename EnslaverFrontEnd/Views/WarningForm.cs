@@ -50,5 +50,11 @@ namespace EnslaverFrontEnd.Views
         public event EventHandler<EventArgs> Init;
 
         public event EventHandler<EventArgs> ExitClick;
+
+
+        public void ShowVideo(string uri)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

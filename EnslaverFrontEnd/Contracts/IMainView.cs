@@ -14,6 +14,7 @@ namespace EnslaverFrontEnd.Contracts
         void SetCamIsActive(bool isActive);
 
         event EventHandler<EventArgs> OnChangeCamDevice;
+        event EventHandler<EventArgs> OnAdminClick;
 
         event EventHandler<EventArgs> OnStartOrStopClick;
 

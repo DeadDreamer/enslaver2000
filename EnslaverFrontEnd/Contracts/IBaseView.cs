@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace EnslaverFrontEnd.Contracts
 {
     public interface IBaseView
-    {
+    {        
         event EventHandler<EventArgs> Init;
         event EventHandler<EventArgs> ExitClick;
     }
