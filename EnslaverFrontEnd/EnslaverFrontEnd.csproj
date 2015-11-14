@@ -71,6 +71,7 @@
     <Compile Include="Contracts\ILoginView.cs" />
     <Compile Include="Contracts\IMainView.cs" />
     <Compile Include="Contracts\IWarningView.cs" />
+    <Compile Include="EigenObjectRecognizer.cs" />
     <Compile Include="Logic\GuardianHelper.cs" />
     <Compile Include="Models\AnimateGradient.cs" />
     <Compile Include="Logic\AppGlobalContext.cs" />

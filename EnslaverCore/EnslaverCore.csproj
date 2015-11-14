@@ -39,6 +39,15 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\ExtResources\AForge.NET Framework-2.2.5-(libs only)\Release\AForge.Video.DirectShow.dll</HintPath>
     </Reference>
+    <Reference Include="Emgu.CV">
+      <HintPath>..\ExtResources\Emgu\Emgu.CV.dll</HintPath>
+    </Reference>
+    <Reference Include="Emgu.CV.UI">
+      <HintPath>..\ExtResources\Emgu\Emgu.CV.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="Emgu.Util">
+      <HintPath>..\ExtResources\Emgu\Emgu.Util.dll</HintPath>
+    </Reference>
     <Reference Include="Fann.Net">
       <HintPath>..\ExtResources\Fann.Net.dll</HintPath>
     </Reference>
