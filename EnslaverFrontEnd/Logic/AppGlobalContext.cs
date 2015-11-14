@@ -11,11 +11,14 @@ namespace EnslaverFrontEnd.Logic
 {
     public class AppGlobalContext : FormFactory
     {
+        //Здесь будет хранится  тот, чей компьютер
+        public string Owner = "";
+
         public static IntPtr FileMapHandler = IntPtr.Zero, HandlerOfMapView = IntPtr.Zero;
 
         public CamHelper CamHelper = new CamHelper();
 
-       // public SoundHelper SoundHelper = new SoundHelper();
+        // public SoundHelper SoundHelper = new SoundHelper();
 
         public static AppGlobalContext GetInstance()
         {
@@ -36,6 +39,7 @@ namespace EnslaverFrontEnd.Logic
         private static FormFactory _formFactory = null;
 
         public bool AllowExit = false;
+
 
         public AppGlobalContext()
         {
@@ -60,11 +64,31 @@ namespace EnslaverFrontEnd.Logic
             throw new Exception("Form not found");
         }
 
+
+        /// <summary>
+        /// Убрать значение из справочника 
+        /// </summary>
+        /// <param name="deletedForm"></param>
+        /// <returns></returns>
+        public virtual int DeleteForm(Guid guidOfDeletedForm)
+        {
+            if (IsContainForm(guidOfDeletedForm))
+            {
+                DicOfForms[guidOfDeletedForm].ForceClose();
+                DicOfForms.Remove(guidOfDeletedForm);
+                return 0;
+            }
+            else
+            {
+                return -1;
+            }
+        }
+
         public override BaseForm CreateForm(long formTypeID, FormMessage formMessage)
         {
-            var type = GetTypeByID(formTypeID);            
+            var type = GetTypeByID(formTypeID);
             var result = (BaseForm)Activator.CreateInstance(type, this, formMessage);
-            result.TypeID = formTypeID;
+            result.TypeID = formTypeID;          
             return result;
         }
 

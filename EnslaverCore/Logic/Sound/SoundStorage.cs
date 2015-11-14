@@ -51,23 +51,26 @@ namespace EnslaverCore.Logic.Sound
 
         public Stream GetSoundStream(string url)
         {
-            string fileName;
-
-            url = url.ToLower();
-
-            if (!this.cache.TryGetValue(url, out fileName))
+            lock (typeof(SoundStorage))
             {
-                fileName = this.CreateFileName(url);
+                string fileName;
 
-                if (!File.Exists(fileName))
+                url = url.ToLower();
+
+                if (!this.cache.TryGetValue(url, out fileName))
                 {
-                    this.DownloadFile(url, fileName);
+                    fileName = this.CreateFileName(url);
+
+                    if (!File.Exists(fileName))
+                    {
+                        this.DownloadFile(url, fileName);
+                    }
+
+                    this.cache.Add(url, fileName);
                 }
 
-                this.cache.Add(url, fileName);
+                return File.OpenRead(this.cache[url]);
             }
-
-            return File.OpenRead(this.cache[url]);
         }
     }
 }

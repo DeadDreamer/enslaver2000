@@ -15,6 +15,7 @@ using System.Runtime.InteropServices;
 using System.Security.Principal;
 using System.Diagnostics;
 using System.Windows.Forms;
+using EnslaverCore.Logic.Sound;
 
 
 
@@ -22,6 +23,7 @@ namespace EnslaverFrontEnd.Views
 {
     public partial class WarningForm : BaseForm, IWarningView
     {
+        private bool isCloseAllowed= false;
         const int HeightMargins = 10;
         // Structure contain information about low-level keyboard input event
         [StructLayout(LayoutKind.Sequential)]
@@ -112,9 +114,16 @@ namespace EnslaverFrontEnd.Views
             axWindowsMediaPlayer1.URL = uri;
         }
 
+        public override void ForceClose() 
+        {
+            isCloseAllowed = true;
+            Speaker.EndSay();
+            base.ForceClose();
+        }
+
         private void WarningForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            e.Cancel = true;
+            e.Cancel = !isCloseAllowed;
             base.OnClosing(e);
         }
 
@@ -129,5 +138,10 @@ namespace EnslaverFrontEnd.Views
             axWindowsMediaPlayer1.Height = this.Height - HeightMargins - WarningLabel.Height;
             axWindowsMediaPlayer1.Width = this.Width;
         }
+        
+        private void button1_Click(object sender, EventArgs e)
+        {
+            AppGlobalContext.GetInstance().DeleteForm(this.Guid);
+    }
     }
 }

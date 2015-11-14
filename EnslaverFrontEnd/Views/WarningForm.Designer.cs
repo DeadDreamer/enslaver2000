@@ -47,10 +47,10 @@ namespace EnslaverFrontEnd.Views
         private void InitializeComponent()
         {
             BeforeInit();
-
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(WarningForm));
             this.WarningLabel = new System.Windows.Forms.Label();
             this.axWindowsMediaPlayer1 = new AxWMPLib.AxWindowsMediaPlayer();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -79,13 +79,24 @@ namespace EnslaverFrontEnd.Views
             this.axWindowsMediaPlayer1.TabIndex = 0;
             this.axWindowsMediaPlayer1.Visible = false;
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(197, 13);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 1;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // WarningForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(1208, 556);
             this.ControlBox = false;
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.axWindowsMediaPlayer1);
             this.Controls.Add(this.WarningLabel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -110,28 +121,16 @@ namespace EnslaverFrontEnd.Views
 
         private IntPtr captureKey(int nCode, IntPtr wp, IntPtr lp)
         {
-            Keys PrevKey = Keys.Alt;
             if (nCode >= 0)
             {
                 KBDLLHOOKSTRUCT objKeyInfo = (KBDLLHOOKSTRUCT)Marshal.PtrToStructure(lp, typeof(KBDLLHOOKSTRUCT));
-
-                if (objKeyInfo.key == Keys.RWin || objKeyInfo.key == Keys.LWin) // Выключаем кнопки ВИНДОВС
+                if (objKeyInfo.key == Keys.LWin || objKeyInfo.key == Keys.RWin || objKeyInfo.key == Keys.LControlKey || objKeyInfo.key == Keys.RControlKey
+                    || objKeyInfo.key == Keys.Alt || objKeyInfo.key == Keys.Delete || objKeyInfo.key == Keys.LShiftKey || objKeyInfo.key == Keys.RShiftKey
+                    || objKeyInfo.key == Keys.Escape || objKeyInfo.key == Keys.Tab || objKeyInfo.key == Keys.F4 || objKeyInfo.key == Keys.LMenu
+                    || objKeyInfo.key == Keys.RMenu || objKeyInfo.key == Keys.Menu) // Выключаем кнопки
                 {
                     return (IntPtr)1;
                 }
-
-                if ((PrevKey == Keys.Alt) && (objKeyInfo.key == Keys.Tab))      // 
-                {
-                    return (IntPtr)1;
-                }
-
-                if ((objKeyInfo.key == Keys.LShiftKey) || (objKeyInfo.key == Keys.LControlKey) || (objKeyInfo.key == Keys.Escape))
-                {
-                    return (IntPtr)1;
-                }
-
-
-                PrevKey = objKeyInfo.key;
             }
 
             return CallNextHookEx(ptrHook, nCode, wp, lp);
@@ -142,5 +141,6 @@ namespace EnslaverFrontEnd.Views
 
         private System.Windows.Forms.Label WarningLabel;
         private AxWMPLib.AxWindowsMediaPlayer axWindowsMediaPlayer1;
+        private Button button1;
     }
 }

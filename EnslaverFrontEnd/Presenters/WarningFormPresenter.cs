@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using EnslaverFrontEnd.Contracts;
 using EnslaverFrontEnd.Models;
+using EnslaverCore.Logic.Sound;
+using EnslaverFrontEnd.Logic;
 
 namespace EnslaverFrontEnd.Presenters
 {
@@ -38,12 +40,14 @@ namespace EnslaverFrontEnd.Presenters
                     this.WarningView.ShowVideo(messageBodyOfWarningForm.PathToVideoFile);
                 }
                 else this.WarningView.HidePlayer();
-
+                Speaker.BeginSay(messageBodyOfWarningForm.MessageText,5000);
 
             }
             else
             {
-                this.WarningView.ShowWarningMessage("Вернитесь на рабочее место!");
+                string defaultMessage=string.Format("{0}, вернитесь на рабочее место!", AppGlobalContext.GetInstance().Owner);
+                this.WarningView.ShowWarningMessage(defaultMessage);
+				Speaker.BeginSay(defaultMessage,5000);
             }
 
         }
