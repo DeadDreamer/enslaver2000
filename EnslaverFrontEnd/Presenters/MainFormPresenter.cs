@@ -90,7 +90,7 @@ namespace EnslaverFrontEnd.Presenters
 
                     //Показываем новую форму...
                     object messageBody = (object)(new MessageBodyOfWarningForm(messageInfo, uriToVideoPath));
-                    //                AppGlobalContext.GetInstance().ShowForm(null, (long)FormTypes.WarningForm, new FormMessage() { Body = messageBody });
+                    AppGlobalContext.GetInstance().ShowForm(null, (long)FormTypes.WarningForm, new FormMessage() { Body = messageBody });
                 }
                 else
                 {

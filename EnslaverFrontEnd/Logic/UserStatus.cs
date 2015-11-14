@@ -101,6 +101,8 @@ namespace EnslaverFrontEnd.Logic
             int headX = head.Head.Left;
         }
 
+        private UserStates previousState;
+
         public UserStates GetUserStatus(User u)
         {
             if (frameCounter != 0)
@@ -109,14 +111,21 @@ namespace EnslaverFrontEnd.Logic
                 {
                     if (((double)u.eyesFound / frameCounter) * 100 > accuracyMargin)
                     {
-                        if (((double)u.smiling / frameCounter) * 100 > accuracyMargin) return UserStates.Smiling;
-                        else return UserStates.Fine;
+                        if (((double)u.smiling / frameCounter) * 100 > accuracyMargin)
+                        {
+                            this.previousState = UserStates.Smiling;
+                        }
+                        else
+                        {
+                            this.previousState = UserStates.Fine;
+                        }
                     }
-                    else return UserStates.EyesNotFound;
+                    else this.previousState = UserStates.EyesNotFound;
                 }
-                else return UserStates.HeadNotFound;
+                else this.previousState = UserStates.HeadNotFound;
             }
-            return UserStates.Fine;
+
+            return this.previousState;
         }
     }
 }

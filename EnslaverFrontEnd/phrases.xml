@@ -37,6 +37,10 @@
     <UserStatePhrases>
     <state>HeadNotFound</state>
     <phrases>
+	  <Phrase>
+        <Text>{0}, я тебя не вижу</Text>
+        <Emotion>Good</Emotion>
+      </Phrase>
       <Phrase>
         <Text>{0}, вернись к работе</Text>
         <Emotion>Evil</Emotion>
