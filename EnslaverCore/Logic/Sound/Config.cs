@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Xml.Serialization;
 using System.IO;
+using System.Configuration;
 
 namespace EnslaverCore.Logic.Sound
 {
@@ -25,6 +26,11 @@ namespace EnslaverCore.Logic.Sound
             var data = new XmlSerializer(typeof(UserStatePhrases[])).Deserialize(File.OpenRead(fileName)) as UserStatePhrases[];
             foreach (var datum in data)
             {
+                foreach (var phrase in datum.phrases)
+                {
+                    phrase.Text = string.Format(phrase.Text, ConfigurationManager.AppSettings["owner"]);
+                }
+
                 cache.Add(datum.state, datum.phrases);
 
                 all.AddRange(datum.phrases);
@@ -35,7 +41,14 @@ namespace EnslaverCore.Logic.Sound
 
         public static Phrase[] GetPhrases(UserStates userState)
         {
-            return cache[userState];
+            if (cache.ContainsKey(userState))
+            {
+                return cache[userState];
+            }
+            else
+            {
+                return new Phrase[] { };
+            }
         }
 
         public static Phrase[] AllPhrases
