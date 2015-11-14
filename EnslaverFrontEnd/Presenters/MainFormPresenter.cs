@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using EnslaverCore.Logic.Sound;
 using EnslaverCore;
 using System.IO;
+using EnslaverCore.Logic;
 
 
 namespace EnslaverFrontEnd.Presenters
@@ -28,9 +29,9 @@ namespace EnslaverFrontEnd.Presenters
             (this.View as IMainView).OnTimerTick += new EventHandler<EventArgs>(MainFormPresenter_OnTimerTick);
             (this.View as IMainView).OnBlinkTimerTick += new EventHandler<EventArgs>(MainFormPresenter_OnBlinkTimerTick);
 
-       //     timer.Elapsed += new System.Timers.ElapsedEventHandler(timer_Elapsed);
-        //    timer.Start();
-            System.Windows.Forms.Application.Idle += new EventHandler(Application_Idle);
+            //     timer.Elapsed += new System.Timers.ElapsedEventHandler(timer_Elapsed);
+            //    timer.Start();
+           // System.Windows.Forms.Application.Idle += new EventHandler(Application_Idle);
             AppGlobalContext.GetInstance().CamHelper.OnNewFrame += CamHelper_OnNewFrame;
         }
 
@@ -73,7 +74,7 @@ namespace EnslaverFrontEnd.Presenters
                 List<BaseForm> forms = AppGlobalContext.GetInstance().FindFormsByType((long)FormTypes.WarningForm);
                 if (needToShowWarningForm)
                 {
-                   
+
                     if (forms != null && forms.Count > 0)
                     {
                         return;
@@ -83,13 +84,13 @@ namespace EnslaverFrontEnd.Presenters
 
                     //Показываем новую форму...
                     object messageBody = (object)(new MessageBodyOfWarningForm(messageInfo, uriToVideoPath));
-                    AppGlobalContext.GetInstance().ShowForm(null, (long)FormTypes.WarningForm, new FormMessage() { Body = messageBody });                    
+                    AppGlobalContext.GetInstance().ShowForm(null, (long)FormTypes.WarningForm, new FormMessage() { Body = messageBody });
                 }
-                else 
+                else
                 {
                     if (forms != null && forms.Count > 0)
                     {
-                     
+
                         //Закрываем формы
                         forms.ForEach(c => c.ForceClose());
                     }
@@ -99,7 +100,7 @@ namespace EnslaverFrontEnd.Presenters
 
         void timer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
         {
-            
+
         }
 
         void Application_Idle(object sender, EventArgs e)

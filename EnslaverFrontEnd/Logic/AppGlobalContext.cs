@@ -1,19 +1,19 @@
-﻿using EnslaverCore.Logic;
+﻿using System;
+using System.Collections.Generic;
+using System.Configuration;
+using System.IO;
+using System.Linq;
+using EnslaverCore.Logic;
+using EnslaverCore.Logic.Sound;
 using EnslaverFrontEnd.Models;
 using EnslaverFrontEnd.Views;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Configuration;
 
 namespace EnslaverFrontEnd.Logic
 {
     public class AppGlobalContext : FormFactory
     {
         //Здесь будет хранится  тот, чей компьютер
-        public string Owner = "";
+        public string Owner = string.Empty;
         public bool IsDebug = false;
         public int TimerPeriodInMilSec = 4000;
         public int TimerBlinkPeriodInMilSec = 4000;
@@ -44,11 +44,16 @@ namespace EnslaverFrontEnd.Logic
 
         public bool AllowExit = false;
 
-
         public AppGlobalContext()
         {
-
             Owner = ConfigurationManager.AppSettings["owner"];
+            PhrasesConfig.Load(Path.Combine(Directory.GetCurrentDirectory(), ConfigurationManager.AppSettings["phrasesConfig"]));
+
+            var phrases = new List<Phrase>(PhrasesConfig.AllPhrases)
+                .Select(phrase => new Phrase { Emotion = phrase.Emotion, Text = this.FormatWithOwner(phrase.Text) })
+                .ToList();
+
+            Speaker.CachePhrases(phrases);
         }
 
         public Type GetTypeByID(long formTypeID)
@@ -105,7 +110,7 @@ namespace EnslaverFrontEnd.Logic
             {
                 if (_startForm == null)
                 {
-                    _startForm = new MainForm(this) { Visible = IsDebug};
+                    _startForm = new MainForm(this) { Visible = IsDebug };
 
                 }
                 return _startForm;
@@ -118,13 +123,18 @@ namespace EnslaverFrontEnd.Logic
             AllowExit = true;
             System.Windows.Forms.Application.Exit();
         }
+
+        public string FormatWithOwner(string format)
+        {
+            return string.Format(format, this.Owner);
+        }
     }
 
     public static class StringExtensions
     {
         public static string FormatWithOwner(this string format)
         {
-            return string.Format(format, AppGlobalContext.GetInstance().Owner);
+            return AppGlobalContext.GetInstance().FormatWithOwner(format);
         }
     }
 }

@@ -48,7 +48,16 @@ namespace EnslaverFrontEnd.Presenters
                 if (formMessage != null &&
                     formMessage.Body is MessageBodyOfLoginForm) 
                 {
-                    AppGlobalContext.GetInstance().ShowForm(null, (long)(formMessage.Body as MessageBodyOfLoginForm).RedirectToForm);
+                    var forms = AppGlobalContext.GetInstance().FindFormsByType(2);
+                    if (forms != null && forms.Count > 0)
+                    {
+                        forms[0].Show();
+                    }
+                    else
+                    {
+                        AppGlobalContext.GetInstance().ShowForm(null, (long)(formMessage.Body as MessageBodyOfLoginForm).RedirectToForm);
+                     
+                    }
                     this.LoginView.CloseView();
                 }
                 else
