@@ -16,6 +16,7 @@ namespace EnslaverFrontEnd.Logic
         public string Owner = "";
         public bool IsDebug = false;
         public int TimerPeriodInMilSec = 4000;
+        public int TimerBlinkPeriodInMilSec = 4000;
 
         public static IntPtr FileMapHandler = IntPtr.Zero, HandlerOfMapView = IntPtr.Zero;
 

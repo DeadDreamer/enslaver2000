@@ -26,11 +26,17 @@ namespace EnslaverFrontEnd.Presenters
             (this.View as IMainView).OnStartOrStopClick += MainFormPresenter_OnStartOrStopClick;
             (this.View as IMainView).OnAdminClick += new EventHandler<EventArgs>(MainFormPresenter_OnAdminClick);
             (this.View as IMainView).OnTimerTick += new EventHandler<EventArgs>(MainFormPresenter_OnTimerTick);
+            (this.View as IMainView).OnBlinkTimerTick += new EventHandler<EventArgs>(MainFormPresenter_OnBlinkTimerTick);
 
        //     timer.Elapsed += new System.Timers.ElapsedEventHandler(timer_Elapsed);
         //    timer.Start();
             System.Windows.Forms.Application.Idle += new EventHandler(Application_Idle);
             AppGlobalContext.GetInstance().CamHelper.OnNewFrame += CamHelper_OnNewFrame;
+        }
+
+        void MainFormPresenter_OnBlinkTimerTick(object sender, EventArgs e)
+        {
+            userStatusChecker.BlinkReset();
         }
 
         void MainFormPresenter_OnTimerTick(object sender, EventArgs e)
@@ -90,7 +96,6 @@ namespace EnslaverFrontEnd.Presenters
                 }
             }
         }
-
 
         void timer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
         {

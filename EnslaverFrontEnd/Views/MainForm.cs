@@ -40,7 +40,10 @@ namespace EnslaverFrontEnd.Views
             this.Visible = false;
             timer1.Tick += new EventHandler(timer1_Tick);
             timer1.Interval = AppGlobalContext.GetInstance().TimerPeriodInMilSec;
-         //   timer1.Start();
+            //timer1.Start();
+            blinkTimer.Interval = AppGlobalContext.GetInstance().TimerBlinkPeriodInMilSec;
+            blinkTimer.Start();
+            
         }
 
         void timer1_Tick(object sender, EventArgs e)
@@ -111,7 +114,7 @@ namespace EnslaverFrontEnd.Views
 
         public event EventHandler<EventArgs> OnChangeCamDevice;
 
-        public event EventHandler<EventArgs> OnStartOrStopClick;
+        public event EventHandler<EventArgs> OnStartOrStopTick;
 
         public FilterInfo GetCurrentDevice()
         {
@@ -134,7 +137,7 @@ namespace EnslaverFrontEnd.Views
 
         private void StartOrStopTrackingButton_Click(object sender, EventArgs e)
         {
-            TryRaiseEvent(OnStartOrStopClick, EventArgs.Empty);
+            TryRaiseEvent(OnStartOrStopTick, EventArgs.Empty);
         }
 
         private void DevicesComboBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -166,6 +169,8 @@ namespace EnslaverFrontEnd.Views
 
         public event EventHandler<EventArgs> OnTimerTick;
 
+        public event EventHandler<EventArgs> OnBlinkTimerTick;
+
         /// <summary>
         /// Сами себя скроем ...
         /// </summary>
@@ -177,5 +182,10 @@ namespace EnslaverFrontEnd.Views
         }
         
         public event EventHandler<EventArgs> OnAdminClick;
+
+        private void blnkTimer_Tick(object sender, EventArgs e)
+        {
+            TryRaiseEvent(OnBlinkTimerTick, e);
+        }
     }
 }

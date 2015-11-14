@@ -31,6 +31,7 @@ namespace EnslaverFrontEnd.Views
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.blinkTimer = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -124,6 +125,10 @@ namespace EnslaverFrontEnd.Views
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // blinkTimer
+            // 
+            this.blinkTimer.Tick += new System.EventHandler(this.blnkTimer_Tick);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -177,5 +182,6 @@ namespace EnslaverFrontEnd.Views
         private Label label1;
         private Label label2;
         private Timer timer1;
+        private Timer blinkTimer;
     }
 }

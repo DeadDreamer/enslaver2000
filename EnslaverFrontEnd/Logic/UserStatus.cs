@@ -11,7 +11,8 @@ namespace EnslaverFrontEnd.Logic
         Fine = 0,
         Smiling = 1,
         EyesNotFound = 2,
-        HeadNotFound = 3
+        HeadNotFound = 3,
+        NotAHuman = 4
     }
 
     class User : IEquatable<User>
@@ -20,6 +21,8 @@ namespace EnslaverFrontEnd.Logic
         public int headFound = 0;
         public int eyesFound = 0;
         public int smiling = 0;
+        public bool isBlinked = false;
+ 
 
         public User(string name)
         {
@@ -51,7 +54,9 @@ namespace EnslaverFrontEnd.Logic
                         u.headFound++;
                         if (h.IsSmile) u.smiling++;
                         if (h.Eye1 != null || h.Eye2 != null) u.eyesFound++;
+                        else u.isBlinked = true;
                     }
+
                 }
             }
         }
@@ -68,6 +73,16 @@ namespace EnslaverFrontEnd.Logic
             last = DateTime.Now;
         }
 
+        public void BlinkReset()
+        {
+            foreach (User u in users) u.isBlinked = false;
+        }
+
+        public bool isHuman(User u)
+        {
+            return u.isBlinked;
+        }
+
         public UserStates GetUserStatus(string owner)
         {
             if (users != null)
@@ -79,6 +94,12 @@ namespace EnslaverFrontEnd.Logic
                 }
             }
             return UserStates.HeadNotFound;
+        }
+
+        void UpdateCoordinates(HeadInformation head, User user)
+        {
+            int headY = head.Head.Top;
+            int headX = head.Head.Left;
         }
 
         public UserStates GetUserStatus(User u)
