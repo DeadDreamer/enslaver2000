@@ -57,6 +57,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Brain.cs" />
     <Compile Include="Logic\CamHelper.cs" />
     <Compile Include="Logic\NeuralNetwork.cs" />
     <Compile Include="Logic\ParameterizedLock.cs" />
