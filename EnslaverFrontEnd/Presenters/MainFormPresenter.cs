@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using EnslaverCore.Logic.Sound;
 
 namespace EnslaverFrontEnd.Presenters
 {
@@ -57,6 +58,8 @@ namespace EnslaverFrontEnd.Presenters
         public override void OnView_Init(object sender, EventArgs e)
         {
             (this.View as IMainView).SetCamDevices(AppGlobalContext.GetInstance().CamHelper.GetListOfDevices());
+
+            Speaker.Say("Поработитель запущен");
         }
     }
 }

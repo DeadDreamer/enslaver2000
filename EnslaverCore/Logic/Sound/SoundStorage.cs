@@ -8,11 +8,16 @@ namespace EnslaverCore.Logic.Sound
 {
     public class SoundStorage
     {
-        public SoundStorage() : this(Directory.GetCurrentDirectory()) { }
+        public SoundStorage() : this(Path.Combine(Directory.GetCurrentDirectory(), "audio")) { }
 
         public SoundStorage(string folder)
         {
             this.Folder = folder;
+
+            if (!Directory.Exists(folder))
+            {
+                Directory.CreateDirectory(folder);
+            }
         }
 
         private string Folder { get; set; }
