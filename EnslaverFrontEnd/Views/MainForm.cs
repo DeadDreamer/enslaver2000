@@ -187,5 +187,8 @@ namespace EnslaverFrontEnd.Views
         {
             TryRaiseEvent(OnBlinkTimerTick, e);
         }
+
+
+        public event EventHandler<EventArgs> OnStartOrStopClick;
     }
 }

@@ -7,15 +7,6 @@ using EnslaverCore.Logic;
 
 namespace EnslaverFrontEnd.Logic
 {
-    public enum UserStates : int
-    {
-        Fine = 0,
-        Smiling = 1,
-        EyesNotFound = 2,
-        HeadNotFound = 3,
-        NotAHuman = 4
-    }
-
     class User : IEquatable<User>
     {
         public string name;
