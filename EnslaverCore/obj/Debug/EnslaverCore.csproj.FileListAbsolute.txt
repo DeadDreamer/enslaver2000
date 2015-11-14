@@ -67,3 +67,4 @@ E:\P2000\EnslaverCore\bin\Debug\AForge.Video.DirectShow.xml
 E:\P2000\EnslaverCore\bin\Debug\AForge.xml
 E:\P2000\EnslaverCore\obj\Debug\EnslaverCore.dll
 E:\P2000\EnslaverCore\obj\Debug\EnslaverCore.pdb
+E:\P2000\EnslaverCore\obj\Debug\EnslaverCore.csprojResolveAssemblyReference.cache
