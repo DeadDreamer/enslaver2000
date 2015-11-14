@@ -84,6 +84,7 @@ namespace EnslaverFrontEnd.Views
 
         private void WarningForm_SizeChanged(object sender, EventArgs e)
         {
+            WarningLabel.Left = this.Width / 2 - WarningLabel.Width / 2;
             axWindowsMediaPlayer1.Height = this.Height - HeightMargins - WarningLabel.Height;
             axWindowsMediaPlayer1.Width = this.Width;
         }

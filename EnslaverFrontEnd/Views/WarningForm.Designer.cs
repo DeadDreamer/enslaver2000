@@ -36,12 +36,17 @@
             // 
             // WarningLabel
             // 
+            this.WarningLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.WarningLabel.AutoSize = true;
-            this.WarningLabel.Location = new System.Drawing.Point(426, 9);
+            this.WarningLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.WarningLabel.ForeColor = System.Drawing.Color.Red;
+            this.WarningLabel.Location = new System.Drawing.Point(440, 9);
             this.WarningLabel.Name = "WarningLabel";
-            this.WarningLabel.Size = new System.Drawing.Size(154, 13);
+            this.WarningLabel.Size = new System.Drawing.Size(457, 37);
             this.WarningLabel.TabIndex = 0;
             this.WarningLabel.Text = "Вернитесь на рабочее место";
+            this.WarningLabel.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // axWindowsMediaPlayer1
             // 
@@ -58,6 +63,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.ClientSize = new System.Drawing.Size(1208, 556);
             this.ControlBox = false;
             this.Controls.Add(this.axWindowsMediaPlayer1);
