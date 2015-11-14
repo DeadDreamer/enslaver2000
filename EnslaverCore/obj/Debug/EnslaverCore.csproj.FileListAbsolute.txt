@@ -68,3 +68,16 @@ E:\P2000\EnslaverCore\bin\Debug\AForge.xml
 E:\P2000\EnslaverCore\obj\Debug\EnslaverCore.dll
 E:\P2000\EnslaverCore\obj\Debug\EnslaverCore.pdb
 E:\P2000\EnslaverCore\obj\Debug\EnslaverCore.csprojResolveAssemblyReference.cache
+C:\P2000\enslaver2000\EnslaverCore\bin\Debug\fanndoubleMT.dll
+C:\P2000\enslaver2000\EnslaverCore\bin\Debug\EnslaverCore.dll
+C:\P2000\enslaver2000\EnslaverCore\bin\Debug\EnslaverCore.pdb
+C:\P2000\enslaver2000\EnslaverCore\bin\Debug\AForge.Video.DirectShow.dll
+C:\P2000\enslaver2000\EnslaverCore\bin\Debug\AForge.Video.dll
+C:\P2000\enslaver2000\EnslaverCore\bin\Debug\Fann.Net.dll
+C:\P2000\enslaver2000\EnslaverCore\bin\Debug\AForge.dll
+C:\P2000\enslaver2000\EnslaverCore\bin\Debug\AForge.Video.xml
+C:\P2000\enslaver2000\EnslaverCore\bin\Debug\AForge.Video.DirectShow.xml
+C:\P2000\enslaver2000\EnslaverCore\bin\Debug\AForge.xml
+C:\P2000\enslaver2000\EnslaverCore\obj\Debug\EnslaverCore.csprojResolveAssemblyReference.cache
+C:\P2000\enslaver2000\EnslaverCore\obj\Debug\EnslaverCore.dll
+C:\P2000\enslaver2000\EnslaverCore\obj\Debug\EnslaverCore.pdb

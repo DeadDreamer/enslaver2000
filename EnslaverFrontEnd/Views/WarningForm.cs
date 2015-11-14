@@ -56,5 +56,11 @@ namespace EnslaverFrontEnd.Views
         {
             throw new NotImplementedException();
         }
+
+        private void WarningForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            e.Cancel = true;
+            base.OnClosing(e);
+        }
     }
 }
