@@ -90,7 +90,7 @@ namespace EnslaverFrontEnd.Logic
         {
             var type = GetTypeByID(formTypeID);
             var result = (BaseForm)Activator.CreateInstance(type, this, formMessage);
-            result.TypeID = formTypeID;          
+            result.TypeID = formTypeID;
             return result;
         }
 
@@ -113,6 +113,14 @@ namespace EnslaverFrontEnd.Logic
             CamHelper.Stop();
             AllowExit = true;
             System.Windows.Forms.Application.Exit();
+        }
+    }
+
+    public static class StringExtensions
+    {
+        public static string FormatWithOwner(this string format)
+        {
+            return string.Format(format, AppGlobalContext.GetInstance().Owner);
         }
     }
 }
