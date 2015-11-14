@@ -41,5 +41,31 @@ namespace EnslaverFrontEnd.Views
         public event EventHandler<EventArgs> Init;
 
         public event EventHandler<EventArgs> ExitClick;
+
+        public event EventHandler<EventArgs> OnStartClick;
+
+        public event EventHandler<EventArgs> OnStopClick;
+
+        public event EventHandler<EventArgs> OnTeachClick;
+
+        public string GetUserName()
+        {
+            return UserTextBox.Text;
+        }
+
+        private void StartButton_Click(object sender, EventArgs e)
+        {
+            TryRaiseEvent(OnStartClick, e);
+        }
+
+        private void StopButton_Click(object sender, EventArgs e)
+        {
+            TryRaiseEvent(OnStopClick, e);
+        }
+
+        private void TeachButton_Click(object sender, EventArgs e)
+        {
+            TryRaiseEvent(OnTeachClick, e);
+        }
     }
 }

@@ -28,27 +28,72 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.StartButton = new System.Windows.Forms.Button();
+            this.StopButton = new System.Windows.Forms.Button();
+            this.TeachButton = new System.Windows.Forms.Button();
+            this.UserTextBox = new System.Windows.Forms.TextBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
-            // checkBox1
+            // pictureBox1
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(24, 96);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(80, 17);
-            this.checkBox1.TabIndex = 0;
-            this.checkBox1.Text = "checkBox1";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.pictureBox1.Location = new System.Drawing.Point(13, 13);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(591, 489);
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
+            // 
+            // StartButton
+            // 
+            this.StartButton.Location = new System.Drawing.Point(626, 13);
+            this.StartButton.Name = "StartButton";
+            this.StartButton.Size = new System.Drawing.Size(95, 49);
+            this.StartButton.TabIndex = 1;
+            this.StartButton.Text = "СТАРТ";
+            this.StartButton.UseVisualStyleBackColor = true;
+            this.StartButton.Click += new System.EventHandler(this.StartButton_Click);
+            // 
+            // StopButton
+            // 
+            this.StopButton.Location = new System.Drawing.Point(736, 13);
+            this.StopButton.Name = "StopButton";
+            this.StopButton.Size = new System.Drawing.Size(95, 49);
+            this.StopButton.TabIndex = 2;
+            this.StopButton.Text = "СТОП";
+            this.StopButton.UseVisualStyleBackColor = true;
+            this.StopButton.Click += new System.EventHandler(this.StopButton_Click);
+            // 
+            // TeachButton
+            // 
+            this.TeachButton.Location = new System.Drawing.Point(756, 121);
+            this.TeachButton.Name = "TeachButton";
+            this.TeachButton.Size = new System.Drawing.Size(75, 23);
+            this.TeachButton.TabIndex = 3;
+            this.TeachButton.Text = "Обучить";
+            this.TeachButton.UseVisualStyleBackColor = true;
+            this.TeachButton.Click += new System.EventHandler(this.TeachButton_Click);
+            // 
+            // UserTextBox
+            // 
+            this.UserTextBox.Location = new System.Drawing.Point(626, 95);
+            this.UserTextBox.Name = "UserTextBox";
+            this.UserTextBox.Size = new System.Drawing.Size(205, 20);
+            this.UserTextBox.TabIndex = 4;
             // 
             // AdminForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(607, 370);
-            this.Controls.Add(this.checkBox1);
+            this.ClientSize = new System.Drawing.Size(849, 514);
+            this.Controls.Add(this.UserTextBox);
+            this.Controls.Add(this.TeachButton);
+            this.Controls.Add(this.StopButton);
+            this.Controls.Add(this.StartButton);
+            this.Controls.Add(this.pictureBox1);
             this.Name = "AdminForm";
             this.Text = "AdminForm";
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -56,6 +101,11 @@
 
         #endregion
 
-        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Button StartButton;
+        private System.Windows.Forms.Button StopButton;
+        private System.Windows.Forms.Button TeachButton;
+        private System.Windows.Forms.TextBox UserTextBox;
+
     }
 }

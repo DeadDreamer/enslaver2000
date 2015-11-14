@@ -8,5 +8,9 @@ namespace EnslaverFrontEnd.Contracts
 {
     public interface IAdminView : IBaseView
     {
+        event EventHandler<EventArgs> OnStartClick;
+        event EventHandler<EventArgs> OnStopClick;
+        event EventHandler<EventArgs> OnTeachClick;
+        string GetUserName();
     }
 }
