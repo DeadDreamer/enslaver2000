@@ -29,6 +29,12 @@ namespace EnslaverCore.Logic.Sound
             this.ApiKey = "c3b2d6ef-25aa-4b3c-b2e5-a642a1f0f618";
         }
 
+        public YandexSpeechKitCloudUrl(string text)
+            : this()
+        {
+            this.Text = text;
+        }
+
         public Emotion Emotion { get; set; }
 
         public Voice Speaker { get; set; }

@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<ArrayOfUserStatePhrases xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <UserStatePhrases>
+    <state>Smiling</state>
+    <phrases>
+      <Phrase>
+        <Text>{0}, хватит улыбаться</Text>
+        <Emotion>Evil</Emotion>
+      </Phrase>
+	  <Phrase>
+        <Text>{0}, успокойся</Text>
+        <Emotion>Neutral</Emotion>
+      </Phrase>
+	  <Phrase>
+        <Text>Ну хватит смеяться</Text>
+        <Emotion>Good</Emotion>
+      </Phrase>
+    </phrases>
+  </UserStatePhrases>
+  <UserStatePhrases>
+    <state>EyesNotFound</state>
+    <phrases>
+      <Phrase>
+        <Text>{0}, смотри на экран</Text>
+        <Emotion>Evil</Emotion>
+      </Phrase>
+	  <Phrase>
+        <Text>{0}, не отвлекайся</Text>
+        <Emotion>Neutral</Emotion>
+      </Phrase>
+	  <Phrase>
+        <Text>Займись делом, {0}</Text>
+        <Emotion>Good</Emotion>
+      </Phrase>
+    </phrases>
+  </UserStatePhrases>
+    <UserStatePhrases>
+    <state>HeadNotFound</state>
+    <phrases>
+      <Phrase>
+        <Text>{0}, вернись к работе</Text>
+        <Emotion>Evil</Emotion>
+      </Phrase>
+	  <Phrase>
+        <Text>{0}, все должны работать</Text>
+        <Emotion>Neutral</Emotion>
+      </Phrase>
+	  <Phrase>
+        <Text>{0}, вернись, я тебя очень жду</Text>
+        <Emotion>Good</Emotion>
+      </Phrase>
+    </phrases>
+  </UserStatePhrases>
+ </ArrayOfUserStatePhrases>

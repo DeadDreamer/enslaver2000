@@ -1,21 +1,30 @@
 ﻿using System.Collections.Generic;
 using System.Media;
 using System.Threading;
+using System;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace EnslaverCore.Logic.Sound
 {
+    [Serializable]
     public class Phrase
     {
-        public Phrase(string text)
+        public Phrase()
         {
             this.Emotion = Emotion.Evil;
+        }
+
+        public Phrase(string text)
+            : this()
+        {
             this.Text = text;
         }
 
         public Phrase(string text, Emotion emotion)
+            : this(text)
         {
             this.Emotion = emotion;
-            this.Text = text;
         }
 
         public string Text { get; set; }
@@ -28,11 +37,19 @@ namespace EnslaverCore.Logic.Sound
 
         private static SoundStorage Storage = new SoundStorage();
 
-        private static void Pronounce(string text, bool sync)
+        private static string GetUrl(Phrase phrase)
         {            
-            Url.Text = text;
-            var sound = Storage.GetSoundStream(Url.ToString());
+            return new YandexSpeechKitCloudUrl
+            {
+                Emotion = phrase.Emotion,
+                Text = phrase.Text
+            }.ToString();
+        }
 
+        private static void Pronounce(Phrase phrase, bool sync)
+        {
+            var url = GetUrl(phrase);
+            var sound = Storage.GetSoundStream(url);
             var player = new SoundPlayer(sound);
 
             if (sync)
@@ -47,12 +64,22 @@ namespace EnslaverCore.Logic.Sound
 
         public static void Say(string text)
         {
-            Pronounce(text, false);
+            Pronounce(new Phrase(text), false);
         }
 
         public static void SaySync(string text)
         {
-            Pronounce(text, true);
+            Pronounce(new Phrase(text), true);
+        }
+
+        public static void Say(Phrase phrase)
+        {
+            Pronounce(phrase, false);
+        }
+
+        public static void SaySync(Phrase phrase)
+        {
+            Pronounce(phrase, true);
         }
 
         private static Timer timer;
@@ -94,6 +121,17 @@ namespace EnslaverCore.Logic.Sound
                 timer.Dispose();
                 timer = null;
             }
+        }
+
+        public static void CachePhrases(IEnumerable<Phrase> phrases)
+        {
+            new Task(() =>
+            {
+                foreach (var phrase in phrases)
+                {
+                    Storage.GetChachedFileName(GetUrl(phrase));
+                }
+            }).Start();
         }
     }
 }
