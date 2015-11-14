@@ -137,10 +137,10 @@ namespace EnslaverFrontEnd.Views
                 TryRaiseEvent(ExitClick, EventArgs.Empty);
             }
         }
-
+        
         private void TestButton_Click(object sender, EventArgs e)
         {
-            AppGlobalContext.GetInstance().ShowForm(this, (long)FormTypes.AlertForm, new FormMessage() { Body = (object)AlertTestTextBox.Text });
+            AppGlobalContext.GetInstance().ShowForm(this, (long)FormTypes.WarningForm, new FormMessage() { Body = (object)AlertTestTextBox.Text });
         }
 
 

@@ -11,6 +11,7 @@ namespace EnslaverFrontEnd.Models
         MainForm = 0,
         AlertForm = 1,
         AdminForm = 2,
-        LoginForm = 3
+        LoginForm = 3,
+        WarningForm = 4
     }
 }

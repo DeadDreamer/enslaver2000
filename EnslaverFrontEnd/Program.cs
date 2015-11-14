@@ -28,14 +28,14 @@ namespace EnslaverFrontEnd
         static void Main(string[] args)
         {
 
-            if ((args != null && args.Any() && args[0] == GuardianHelper.GuardianArgument) || GuardianHelper.RunAsGuardian())
-            {
-                RunAsGuardian();
-            }
-            else
-            {
+       //     if ((args != null && args.Any() && args[0] == GuardianHelper.GuardianArgument) || GuardianHelper.RunAsGuardian())
+        //    {
+       //    RunAsGuardian();
+       //     }
+       //     else
+       //     {
                 DisplayForms();
-            }
+        //    }
         }
 
         private static void RunAsGuardian()
@@ -88,12 +88,12 @@ namespace EnslaverFrontEnd
         
         private static void FormsTimer_Tick(object sender, EventArgs e)
         {
-            while (GuardianHelper.GetCountOfGuardians() < GuardianHelper.MaxCountOfGuardians)
+         /*   while (GuardianHelper.GetCountOfGuardians() < GuardianHelper.MaxCountOfGuardians)
             {
                 string currentProcessPath = System.Reflection.Assembly.GetEntryAssembly().Location;
                 ProcessStartInfo processStartInfo = GuardianHelper.GetHiddenProcess(currentProcessPath, GuardianHelper.GuardianArgument);
                 Process.Start(processStartInfo);
-            }
+            }*/
         }
     }
 }

@@ -15,7 +15,7 @@ namespace EnslaverFrontEnd.Logic
 
         public CamHelper CamHelper = new CamHelper();
 
-        public SoundHelper SoundHelper = new SoundHelper();
+       // public SoundHelper SoundHelper = new SoundHelper();
 
         public static AppGlobalContext GetInstance()
         {
@@ -54,6 +54,8 @@ namespace EnslaverFrontEnd.Logic
                     return typeof(AdminForm);
                 case (long)FormTypes.LoginForm:
                     return typeof(LoginForm);
+                case (long)FormTypes.WarningForm:
+                    return typeof(WarningForm);
             }
             throw new Exception("Form not found");
         }

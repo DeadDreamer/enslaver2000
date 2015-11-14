@@ -28,12 +28,13 @@ namespace EnslaverFrontEnd.Views
             InitThisForm(null);
         }
 
-        private FormMessage formMessage = null;
         public AlertForm(FormFactory currentFormFactory, FormMessage someMessage)
             : base(currentFormFactory)
         {
             InitThisForm(someMessage);
         }
+
+        private FormMessage formMessage = null;        
 
         private void InitThisForm(FormMessage someMessage)
         {
