@@ -370,6 +370,7 @@ namespace EnslaverCore.Logic
             {
                 throw new Exception("Не задан handler!");
             }*/
+            return true;
         }
 
         /// <summary>
