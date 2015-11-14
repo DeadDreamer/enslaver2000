@@ -11,6 +11,7 @@ using EnslaverCore;
 using System.IO;
 using EnslaverCore.Logic;
 using EnslaverFrontEnd.Views;
+using System.Configuration;
 
 
 namespace EnslaverFrontEnd.Presenters
@@ -46,38 +47,46 @@ namespace EnslaverFrontEnd.Presenters
             RunAdminFormAsSingletoneGhostForm();
             bool needToShowWarningForm = false;
             //Phrase[] messageInfo;
-            string uriToVideoPath = "";
-
+            
             lock (lockObject)
             {
-                UserStates userStatus = userStatusChecker.GetUserStatus(AppGlobalContext.GetInstance().OwnerId);
-
+                var userStatus = userStatusChecker.GetUserStatus(AppGlobalContext.GetInstance().OwnerId);
                 var messageInfo = PhrasesConfig.GetPhrases(userStatus);
+                string uriToVideoPath = string.Empty;
 
-                switch (userStatus)
+                if (userStatus != UserStates.Fine)
                 {
-                    case UserStates.HeadNotFound:
-                        needToShowWarningForm = true;
-                        //"{0}, вернитесь на рабочее место!".FormatWithOwner();
-                        uriToVideoPath = Directory.GetCurrentDirectory() + "\\Resources\\eyeSauron.mp4";
-                        break;
-                    case UserStates.EyesNotFound:
-                        needToShowWarningForm = true;
-                        //messageInfo = "{0}, смотрите в монитор!".FormatWithOwner();
-                        uriToVideoPath = Directory.GetCurrentDirectory() + "\\Resources\\eyeSauron.mp4";
-                        break;
-                    case UserStates.Smiling:
-                        needToShowWarningForm = true;
-                        //messageInfo = "{0}, перестаньте улыбаться!".FormatWithOwner();
-                        uriToVideoPath = Directory.GetCurrentDirectory() + "\\Resources\\eyeSauron.mp4";
-                        break;
-                    case UserStates.Fine:
-                    default:
-                        needToShowWarningForm = false;
-                        break;
+                    uriToVideoPath = Path.Combine(Directory.GetCurrentDirectory(), ConfigurationManager.AppSettings["video" + userStatus]);
+                    needToShowWarningForm = true;
                 }
+                                
+                //switch (userStatus)
+                //{
+                //    case UserStates.HeadNotFound:
+                //        needToShowWarningForm = true;
+                //        //"{0}, вернитесь на рабочее место!".FormatWithOwner();
+                //        //uriToVideoPath = Directory.GetCurrentDirectory() + "\\Resources\\eyeSauron.mp4";
+                //        break;
+                //    case UserStates.EyesNotFound:
+                //        needToShowWarningForm = true;
+                //        //messageInfo = "{0}, смотрите в монитор!".FormatWithOwner();
+                //        //uriToVideoPath = Directory.GetCurrentDirectory() + "\\Resources\\eyeSauron.mp4";
+                //        break;
+                //    case UserStates.Smiling:
+                //        needToShowWarningForm = true;
+                //        //messageInfo = "{0}, перестаньте улыбаться!".FormatWithOwner();
+                //        //uriToVideoPath = Directory.GetCurrentDirectory() + "\\Resources\\eyeSauron.mp4";
+                //        break;
+                //    case UserStates.Fine:
+                //    default:
+                //        needToShowWarningForm = false;
+                //        break;
+                //}
+
                 userStatusChecker.ResetCounters();
-                List<BaseForm> forms = AppGlobalContext.GetInstance().FindFormsByType((long)FormTypes.WarningForm);
+
+                var forms = AppGlobalContext.GetInstance().FindFormsByType((long)FormTypes.WarningForm);
+                
                 if (needToShowWarningForm)
                 {
 

@@ -52,7 +52,7 @@ namespace EnslaverFrontEnd.Logic
                     {
                         u.headFound++;
                         if (h.IsSmile) u.smiling++;
-                        if (h.Eye1 != null || h.Eye2 != null) u.eyesFound++;
+                        if (((h.Eye1.Height != 0 && h.Eye1.Width != 0)  || (h.Eye2.Height != 0 && h.Eye2.Width != 0))) u.eyesFound++;
                         else u.isBlinked = true;
                     }
 
