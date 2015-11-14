@@ -15,7 +15,7 @@ namespace EnslaverFrontEnd.Contracts
 
         event EventHandler<EventArgs> OnChangeCamDevice;
         event EventHandler<EventArgs> OnAdminClick;
-
+        event EventHandler<EventArgs> OnTimerTick;
         event EventHandler<EventArgs> OnStartOrStopClick;
 
         FilterInfo GetCurrentDevice();

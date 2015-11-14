@@ -18,7 +18,6 @@ namespace EnslaverFrontEnd.Views
         /// </summary>
         private void InitializeComponent()
         {
-            CustomSettings();
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.NotifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
@@ -31,6 +30,7 @@ namespace EnslaverFrontEnd.Views
             this.VideoFileTextBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -120,6 +120,10 @@ namespace EnslaverFrontEnd.Views
             this.label2.TabIndex = 8;
             this.label2.Text = "Path to video file";
             // 
+            // timer1
+            // 
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -142,7 +146,7 @@ namespace EnslaverFrontEnd.Views
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
-            CustomSettings();
+
         }
 
 
@@ -172,5 +176,6 @@ namespace EnslaverFrontEnd.Views
         private TextBox VideoFileTextBox;
         private Label label1;
         private Label label2;
+        private Timer timer1;
     }
 }

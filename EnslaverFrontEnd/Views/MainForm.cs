@@ -38,6 +38,14 @@ namespace EnslaverFrontEnd.Views
             InitializeComponent();
             TryRaiseEvent(Init, EventArgs.Empty);
             this.Visible = false;
+            timer1.Tick += new EventHandler(timer1_Tick);
+            timer1.Interval = AppGlobalContext.GetInstance().TimerPeriodInMilSec;
+            timer1.Start();
+        }
+
+        void timer1_Tick(object sender, EventArgs e)
+        {
+            TryRaiseEvent(OnTimerTick, e);         
         }
 
         protected override void Dispose(bool disposing)
@@ -156,7 +164,7 @@ namespace EnslaverFrontEnd.Views
             StartOrStopTrackingButton.Text = (isActive) ? "Stop tracking..." : "Start tracking...";
         }
 
-        public event EventHandler<EventArgs> OnAdminClick;
+        public event EventHandler<EventArgs> OnTimerTick;
 
         /// <summary>
         /// Сами себя скроем ...
@@ -167,5 +175,7 @@ namespace EnslaverFrontEnd.Views
         {
             this.Visible = AppGlobalContext.GetInstance().IsDebug;
         }
+        
+        public event EventHandler<EventArgs> OnAdminClick;
     }
 }
