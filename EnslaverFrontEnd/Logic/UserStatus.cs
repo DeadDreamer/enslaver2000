@@ -55,7 +55,6 @@ namespace EnslaverFrontEnd.Logic
                         if (((h.Eye1.Height != 0 && h.Eye1.Width != 0)  || (h.Eye2.Height != 0 && h.Eye2.Width != 0))) u.eyesFound++;
                         else u.isBlinked = true;
                     }
-
                 }
             }
         }
@@ -117,7 +116,14 @@ namespace EnslaverFrontEnd.Logic
                         }
                         else
                         {
-                            this.previousState = UserStates.Fine;
+                            //if (!this.isHuman(u))
+                            //{
+                            //    this.previousState = UserStates.Photo;
+                            //}
+                            //else
+                            //{
+                                this.previousState = UserStates.Fine;
+                            //}
                         }
                     }
                     else this.previousState = UserStates.EyesNotFound;

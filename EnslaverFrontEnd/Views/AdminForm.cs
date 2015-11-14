@@ -83,8 +83,8 @@ namespace EnslaverFrontEnd.Views
                 }
 
 
-                //Initialize the FrameGraber event
-                Application.Idle += new EventHandler(FrameGrabber);
+                
+               
 
             }
             catch (Exception e)
@@ -92,6 +92,9 @@ namespace EnslaverFrontEnd.Views
                 //MessageBox.Show(e.ToString());
                 MessageBox.Show("Nothing in binary database, please add at least a face(Simply train the prototype with the Add Face Button).", "Triained faces load", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
+
+            //Initialize the FrameGraber event
+            Application.Idle += new EventHandler(FrameGrabber);
         }
 
 
