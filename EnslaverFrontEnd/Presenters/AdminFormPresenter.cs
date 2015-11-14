@@ -10,6 +10,7 @@ using Emgu.CV;
 using System.Windows.Forms;
 using Emgu.CV.CvEnum;
 using System.IO;
+using EnslaverFrontEnd.Models;
 
 namespace EnslaverFrontEnd.Presenters
 {
@@ -20,14 +21,31 @@ namespace EnslaverFrontEnd.Presenters
         public AdminFormPresenter(IBaseView view)
             : base(view)
         {
-
-            //  (this.View as IAdminView).OnStartClick += new EventHandler<EventArgs>(AdminFormPresenter_OnStartClick);
-            //  (this.View as IAdminView).OnStopClick += new EventHandler<EventArgs>(AdminFormPresenter_OnStopClick);
+            if (view is IAdminView)
+            {
+                this.AdminView = (view as IAdminView);
+                this.AdminView.Init += new EventHandler<EventArgs>(AdminView_Init);             
+            }
+            else
+            {
+                new Exception("Это не наша форма!");
+            }
         }
 
-        public override void OnView_ExitClick(object sender, EventArgs e)
+        void AdminView_Init(object sender, EventArgs e)
         {
-            (this.View as IAdminView).CloseView();
+            var formMessage = this.AdminView.GetFormMessage();
+            if (formMessage != null && formMessage.Body is MessageBodyOfAdminForm) 
+            {
+                if (!(formMessage.Body as MessageBodyOfAdminForm).IsVisible) 
+                {
+                    this.AdminView.HideView();
+                }
+            }
         }
+
+        
+
+        public IAdminView AdminView { get; set; }
     }
 }

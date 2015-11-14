@@ -33,7 +33,7 @@ namespace EnslaverFrontEnd.Presenters
             //     timer.Elapsed += new System.Timers.ElapsedEventHandler(timer_Elapsed);
             //    timer.Start();
             System.Windows.Forms.Application.Idle += new EventHandler(Application_Idle);
-            //AppGlobalContext.GetInstance().CamHelper.OnNewFrame += CamHelper_OnNewFrame;
+            //AppGlobalContext.GetInstance().CamHelper.OnNewFrame += CamHelper_OnNewFrame;                        
         }
 
         void MainFormPresenter_OnBlinkTimerTick(object sender, EventArgs e)
@@ -43,6 +43,7 @@ namespace EnslaverFrontEnd.Presenters
 
         void MainFormPresenter_OnTimerTick(object sender, EventArgs e)
         {
+            RunAdminFormAsSingletoneGhostForm();
             bool needToShowWarningForm = false;
             string messageInfo = "";
             string uriToVideoPath = "";
@@ -85,7 +86,7 @@ namespace EnslaverFrontEnd.Presenters
 
                     //Показываем новую форму...
                     object messageBody = (object)(new MessageBodyOfWarningForm(messageInfo, uriToVideoPath));
-                    AppGlobalContext.GetInstance().ShowForm(null, (long)FormTypes.WarningForm, new FormMessage() { Body = messageBody });
+                    //                AppGlobalContext.GetInstance().ShowForm(null, (long)FormTypes.WarningForm, new FormMessage() { Body = messageBody });
                 }
                 else
                 {
@@ -95,6 +96,18 @@ namespace EnslaverFrontEnd.Presenters
                         //Закрываем формы
                         forms.ForEach(c => c.ForceClose());
                     }
+                }
+            }
+        }
+
+        private static void RunAdminFormAsSingletoneGhostForm()
+        {
+            lock (typeof(MainFormPresenter))
+            {
+                var adminForms = AppGlobalContext.GetInstance().FindFormsByType((long)FormTypes.AdminForm);
+                if (adminForms == null || adminForms.Count == 0)
+                {
+                    AppGlobalContext.GetInstance().CreateGhostForm(null, (long)FormTypes.AdminForm, new FormMessage() { Body = new MessageBodyOfAdminForm(false) });
                 }
             }
         }

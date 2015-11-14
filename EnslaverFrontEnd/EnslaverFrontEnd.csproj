@@ -78,6 +78,7 @@
     <Compile Include="Logic\AppGlobalContext.cs" />
     <Compile Include="Logic\FormHelper.cs" />
     <Compile Include="Models\FormTypes.cs" />
+    <Compile Include="Models\MessageBodyOfAdminForm.cs" />
     <Compile Include="Models\MessageBodyOfLoginForm.cs" />
     <Compile Include="Models\MessageBodyOfWarningForm.cs" />
     <Compile Include="Models\TransparentLabel.cs">

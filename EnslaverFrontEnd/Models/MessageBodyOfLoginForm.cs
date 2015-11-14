@@ -5,12 +5,12 @@ using System.Text;
 
 namespace EnslaverFrontEnd.Models
 {
-  public   class MessageBodyOfLoginForm
+    public class MessageBodyOfLoginForm
     {
         public MessageBodyOfLoginForm(FormTypes type)
         {
-            this.RedirectToForm= type;
-            
+            this.RedirectToForm = type;
+
         }
 
         public FormTypes RedirectToForm { get; set; }

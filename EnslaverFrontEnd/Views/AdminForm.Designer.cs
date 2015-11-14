@@ -174,13 +174,14 @@
             this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(AdminForm_FormClosing);
+            this.VisibleChanged += new System.EventHandler(this.AdminForm_VisibleChanged);
 
         }
 
         void AdminForm_FormClosing(object sender, System.Windows.Forms.FormClosingEventArgs e)
         {            
-            this.Hide();
-            e.Cancel = true;
+            this.Hide();            
+            e.Cancel = !EnslaverFrontEnd.Logic.AppGlobalContext.GetInstance().AllowExit ;
         }
 
         #endregion

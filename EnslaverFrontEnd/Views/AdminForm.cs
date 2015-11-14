@@ -37,21 +37,26 @@ namespace EnslaverFrontEnd.Views
         public AdminForm(FormFactory currentFormFactory, FormMessage someMessage)
             : base(currentFormFactory)
         {
-            InitForm();
+            InitForm(someMessage);
         }
 
-        public AdminForm(FormFactory currentFormFactory): base(currentFormFactory)
+        public AdminForm(FormFactory currentFormFactory)
+            : base(currentFormFactory)
         {
-            InitForm();
+            InitForm(null);
         }
         public AdminForm()
         {
-            InitForm();
+            InitForm(null);
         }
 
-        public void InitForm()
+        public void InitForm(FormMessage someMessage)
         {
-            
+            //Initialize the capture device
+            grabber = new Capture();
+            grabber.QueryFrame();
+
+            formMessage = someMessage;
             InitializeComponent();
             Presenter = new EnslaverFrontEnd.Presenters.AdminFormPresenter(this);
             TryRaiseEvent(Init, EventArgs.Empty);
@@ -77,9 +82,7 @@ namespace EnslaverFrontEnd.Views
                     labels.Add(Labels[tf]);
                 }
 
-                //Initialize the capture device
-                grabber = new Capture();
-                grabber.QueryFrame();
+
                 //Initialize the FrameGraber event
                 Application.Idle += new EventHandler(FrameGrabber);
 
@@ -89,8 +92,6 @@ namespace EnslaverFrontEnd.Views
                 //MessageBox.Show(e.ToString());
                 MessageBox.Show("Nothing in binary database, please add at least a face(Simply train the prototype with the Add Face Button).", "Triained faces load", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
-
-            this.Show();
         }
 
 
@@ -285,7 +286,7 @@ namespace EnslaverFrontEnd.Views
                         hi.Eye2 = eyesDetected[0][1].rect;
                     }
                 }
-              
+
                 hi.Name = name;
 
                 _lastInfo.Add(hi);
@@ -307,104 +308,6 @@ namespace EnslaverFrontEnd.Views
 
         }
 
-        /*
-        Capture grabber = new Capture();
-        public AdminForm()
-        {
-            InitThisForm();
-        }
-
-        public AdminForm(FormFactory currentFormFactory)
-            : base(currentFormFactory)
-        {
-            InitThisForm();
-        }
-
-        public AdminForm(FormFactory currentFormFactory, FormMessage formMessage)
-            : base(currentFormFactory)
-        {
-            InitThisForm();
-        }
-        private void InitThisForm()
-        {
-            InitEmgu();
-            Presenter = new EnslaverFrontEnd.Presenters.AdminFormPresenter(this);
-            InitializeComponent();
-            TryRaiseEvent(Init, EventArgs.Empty);
-
-        }
-
-        private void InitEmgu()
-        {
-            InitializeComponent();
-
-        }
-
-        public event EventHandler<EventArgs> Init;
-
-        public event EventHandler<EventArgs> ExitClick;
-
-        public event EventHandler<EventArgs> OnStartClick;
-
-        public event EventHandler<EventArgs> OnStopClick;
-
-        public event EventHandler<EventArgs> OnTeachClick;
-
-        public string GetUserName()
-        {
-            return UserNameTextBox.Text;
-        }
-
-        private void StartButton_Click(object sender, EventArgs e)
-        {
-            TryRaiseEvent(OnStartClick, e);
-
-        }
-
-        private void StopButton_Click(object sender, EventArgs e)
-        {
-            TryRaiseEvent(OnStopClick, e);
-        }
-
-        private void TeachButton_Click(object sender, EventArgs e)
-        {
-            TryRaiseEvent(OnTeachClick, e);
-        }
-
-
-        public Capture GetCapture()
-        {            
-            return grabber;
-        }
-
-
-        public void SetImage(IImage someImage)
-        {
-            imageBoxFrameGrabber.Image = someImage;
-        }
-
-
-        public void SetListOfUsers(string listOfUsers)
-        {
-            ListOfUserLabel.Text = listOfUsers;
-        }
-
-        public void SetCountOfUsers(string countOfUsers)
-        {
-            CountOfFacesLabel.Text = countOfUsers;
-        }
-
-
-        public void SetTrainedName(string name)
-        {
-
-        }
-
-        public void SetTrainedImage(IImage someImage)
-        {
-            TeachedImage.Image = someImage;
-        }*/
-
         public event EventHandler<EventArgs> OnStartClick;
 
         public event EventHandler<EventArgs> OnStopClick;
@@ -414,6 +317,10 @@ namespace EnslaverFrontEnd.Views
         public string GetUserName()
         {
             throw new NotImplementedException();
+        }
+
+        private void AdminForm_VisibleChanged(object sender, EventArgs e)
+        {         
         }
 
         public void SetListOfUsers(string listOfUsers)
@@ -451,17 +358,24 @@ namespace EnslaverFrontEnd.Views
         public event EventHandler<EventArgs> ExitClick;
 
 
-        
-        
         public void CloseView()
         {
-       
         }
-        
+
         protected override void OnClosed(EventArgs e)
         {
-        //    e.
-          //  this.Hide();
         }
+
+        public FormMessage formMessage { get; set; }
+
+        public FormMessage GetFormMessage()
+        {
+            return formMessage;
+        }
+
+        public void HideView()
+        {
+            this.Hide();         
+        }     
     }
 }

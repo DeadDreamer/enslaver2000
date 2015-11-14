@@ -40,13 +40,13 @@ namespace EnslaverFrontEnd.Presenters
             }
             else if (checkThis == Constants.VeryStrongPassword)
             {
-              //  SharedMemoryHelper.WriteBytesAtOnce(AppGlobalContext.HandlerOfMapView, SharedMemoryHelper.GetBytesFromUnicodeString("-1"));
-              //  SharedMemoryHelper.CloseHandlers(AppGlobalContext.FileMapHandler, AppGlobalContext.HandlerOfMapView);
+                //  SharedMemoryHelper.WriteBytesAtOnce(AppGlobalContext.HandlerOfMapView, SharedMemoryHelper.GetBytesFromUnicodeString("-1"));
+                //  SharedMemoryHelper.CloseHandlers(AppGlobalContext.FileMapHandler, AppGlobalContext.HandlerOfMapView);
 
                 FormMessage formMessage = this.LoginView.GetFormMessage();
                 //Проверяем ,что это наше сообщение и не пустое...
                 if (formMessage != null &&
-                    formMessage.Body is MessageBodyOfLoginForm) 
+                    formMessage.Body is MessageBodyOfLoginForm)
                 {
                     var forms = AppGlobalContext.GetInstance().FindFormsByType(2);
                     if (forms != null && forms.Count > 0)
@@ -56,7 +56,7 @@ namespace EnslaverFrontEnd.Presenters
                     else
                     {
                         AppGlobalContext.GetInstance().ShowForm(null, (long)(formMessage.Body as MessageBodyOfLoginForm).RedirectToForm);
-                     
+
                     }
                     this.LoginView.CloseView();
                 }
@@ -65,7 +65,7 @@ namespace EnslaverFrontEnd.Presenters
                     AppGlobalContext.GetInstance().Exit();
                 }
 
-                
+
             }
             else
             {
