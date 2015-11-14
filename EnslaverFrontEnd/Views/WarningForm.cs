@@ -117,6 +117,7 @@ namespace EnslaverFrontEnd.Views
         public override void ForceClose() 
         {
             isCloseAllowed = true;
+            Speaker.EndSay();
             base.ForceClose();
         }
 
@@ -137,14 +138,7 @@ namespace EnslaverFrontEnd.Views
             axWindowsMediaPlayer1.Height = this.Height - HeightMargins - WarningLabel.Height;
             axWindowsMediaPlayer1.Width = this.Width;
         }
-
-
-        public void CloseForm()
-        {
-            Speaker.EndSay();
-
-        }
-
+        
         private void button1_Click(object sender, EventArgs e)
         {
             AppGlobalContext.GetInstance().DeleteForm(this.Guid);

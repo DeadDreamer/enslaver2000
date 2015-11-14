@@ -11,7 +11,6 @@ namespace EnslaverFrontEnd.Contracts
         void HidePlayer();
         FormMessage GetFormMessage();
         void ShowWarningMessage(string text);
-        void ShowVideo(string uri);
-        void CloseForm();
+        void ShowVideo(string uri);        
     }
 }
