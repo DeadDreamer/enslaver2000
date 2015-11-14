@@ -1,4 +1,4 @@
-﻿using FANN.Net;
+﻿//using FANN.Net;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace EnslaverCore.Logic
 {
+    /*
     public class NeuralNetwork
     {
         public static int FaceWidth = 100;
@@ -177,5 +178,5 @@ namespace EnslaverCore.Logic
         }
 
 
-    }
+    }*/
 }

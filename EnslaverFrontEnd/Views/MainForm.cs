@@ -1,4 +1,4 @@
-﻿using AForge.Video.DirectShow;
+﻿//using AForge.Video.DirectShow;
 using EnslaverFrontEnd.Contracts;
 using EnslaverFrontEnd.Logic;
 using EnslaverFrontEnd.Models;
@@ -90,7 +90,7 @@ namespace EnslaverFrontEnd.Views
             this.NotifyIcon.ContextMenu = new ContextMenu(new MenuItem[] { new MenuItem("Аdministration", this.AdminIcon_ExitClick), new MenuItem("Close!", this.NotifyIcon_ExitClick) });
         }
 
-
+        /*
         public void SetCamDevices(List<FilterInfo> camDevices)
         {
             devices = camDevices;
@@ -109,14 +109,15 @@ namespace EnslaverFrontEnd.Views
             }
             DevicesComboBox.SelectedIndex = 0;
         }
+        */
 
-        private List<FilterInfo> devices = null;
+        //private List<FilterInfo> devices = null;
 
         public event EventHandler<EventArgs> OnChangeCamDevice;
 
         public event EventHandler<EventArgs> OnStartOrStopTick;
 
-        public FilterInfo GetCurrentDevice()
+      /*  public FilterInfo GetCurrentDevice()
         {
             if (DevicesComboBox.SelectedIndex == 0 || DevicesComboBox.SelectedIndex == -1)
                 return null;
@@ -124,7 +125,7 @@ namespace EnslaverFrontEnd.Views
             if ((DevicesComboBox.SelectedIndex - 1) < (devices.Count))
                 return devices[DevicesComboBox.SelectedIndex - 1];
             return null;
-        }
+        }*/
 
         public void SetCurrentBitmap(Bitmap bitmap)
         {
