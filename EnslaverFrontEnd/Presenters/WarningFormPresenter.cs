@@ -32,7 +32,14 @@ namespace EnslaverFrontEnd.Presenters
             {
                 MessageBodyOfWarningForm messageBodyOfWarningForm = (formMessage.Body as MessageBodyOfWarningForm);
                 this.WarningView.ShowWarningMessage(messageBodyOfWarningForm.MessageText);
-                this.WarningView.ShowVideo(messageBodyOfWarningForm.PathToVideoFile);
+
+                if (!string.IsNullOrEmpty(messageBodyOfWarningForm.PathToVideoFile)) //проверка наличия видео
+                {
+                    this.WarningView.ShowVideo(messageBodyOfWarningForm.PathToVideoFile);
+                }
+                else this.WarningView.HidePlayer();
+
+
             }
             else
             {
