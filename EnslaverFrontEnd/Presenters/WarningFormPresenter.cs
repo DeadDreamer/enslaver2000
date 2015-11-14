@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using EnslaverFrontEnd.Contracts;
 using EnslaverFrontEnd.Models;
+using EnslaverCore.Logic.Sound;
 
 namespace EnslaverFrontEnd.Presenters
 {
@@ -38,7 +39,7 @@ namespace EnslaverFrontEnd.Presenters
                     this.WarningView.ShowVideo(messageBodyOfWarningForm.PathToVideoFile);
                 }
                 else this.WarningView.HidePlayer();
-
+                Speaker.BeginSay(messageBodyOfWarningForm.MessageText,5000);
 
             }
             else

@@ -27,7 +27,7 @@ namespace EnslaverFrontEnd.Logic
         }
 
         //Справочник для создания форм через регистрацию
-        private Dictionary<long, Type> DicTypeIDToForm = new Dictionary<long, Type>();
+        protected Dictionary<long, Type> DicTypeIDToForm = new Dictionary<long, Type>();
 
         /// <summary>
         /// Справочник текщих активных окон

@@ -70,5 +70,10 @@ namespace EnslaverFrontEnd
         {
             CurrentFormFactory.DeleteForm(this);
         }
+
+        public virtual void ForceClose() 
+        {
+            this.Close();
+        }
     }
 }
