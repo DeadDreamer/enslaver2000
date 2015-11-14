@@ -62,5 +62,10 @@ namespace EnslaverFrontEnd.Views
             e.Cancel = true;
             base.OnClosing(e);
         }
+
+        public FormMessage GetFormMessage()
+        {
+            return this.formMessage;
+        }
     }
 }

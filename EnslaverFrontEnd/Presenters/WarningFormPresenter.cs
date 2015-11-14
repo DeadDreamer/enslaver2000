@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using EnslaverFrontEnd.Contracts;
+using EnslaverFrontEnd.Models;
 
 namespace EnslaverFrontEnd.Presenters
 {
@@ -25,7 +26,16 @@ namespace EnslaverFrontEnd.Presenters
 
         void View_Init(object sender, EventArgs e)
         {
-            this.WarningView.ShowWarningMessage("Привет!");
+            FormMessage formMessage = this.WarningView.GetFormMessage();
+            if (formMessage.Body is string)
+            {
+                this.WarningView.ShowWarningMessage(formMessage.Body as string);
+            }
+            else
+            {
+                this.WarningView.ShowWarningMessage("Вернитесь на рабочее место!");
+            }
+
         }
 
         public IWarningView WarningView { get; set; }
