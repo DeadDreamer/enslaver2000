@@ -40,7 +40,7 @@ namespace EnslaverFrontEnd.Views
             this.Visible = false;
             timer1.Tick += new EventHandler(timer1_Tick);
             timer1.Interval = AppGlobalContext.GetInstance().TimerPeriodInMilSec;
-            timer1.Start();
+         //   timer1.Start();
         }
 
         void timer1_Tick(object sender, EventArgs e)
