@@ -15,6 +15,8 @@ namespace EnslaverFrontEnd.Views
 {
     public partial class WarningForm : BaseForm, IWarningView
     {
+        const int HeightMargins = 10;
+
         public WarningForm()
         {
             InitializeComponent();
@@ -40,6 +42,16 @@ namespace EnslaverFrontEnd.Views
             Presenter = new EnslaverFrontEnd.Presenters.WarningFormPresenter(this);
             InitializeComponent();
             TryRaiseEvent(Init, EventArgs.Empty);
+            InitPlayer();
+        }
+
+        private void InitPlayer()
+        {
+            axWindowsMediaPlayer1.Top = 0 + WarningLabel.Height + HeightMargins;
+            axWindowsMediaPlayer1.Left = 0;
+            axWindowsMediaPlayer1.Height = this.Height - HeightMargins - WarningLabel.Height;
+            axWindowsMediaPlayer1.Width = this.Width;
+            axWindowsMediaPlayer1.settings.setMode("Loop", true);
         }
 
         public void ShowWarningMessage(string text)
@@ -54,7 +66,9 @@ namespace EnslaverFrontEnd.Views
 
         public void ShowVideo(string uri)
         {
-            //Тут добавим проигрывание видео
+            //Тут проигрывание видео
+            axWindowsMediaPlayer1.Visible = true;
+            axWindowsMediaPlayer1.URL = uri;
         }
 
         private void WarningForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -66,6 +80,12 @@ namespace EnslaverFrontEnd.Views
         public FormMessage GetFormMessage()
         {
             return this.formMessage;
+        }
+
+        private void WarningForm_SizeChanged(object sender, EventArgs e)
+        {
+            axWindowsMediaPlayer1.Height = this.Height - HeightMargins - WarningLabel.Height;
+            axWindowsMediaPlayer1.Width = this.Width;
         }
     }
 }

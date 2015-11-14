@@ -27,7 +27,8 @@ namespace EnslaverFrontEnd.Presenters
         void View_Init(object sender, EventArgs e)
         {
             FormMessage formMessage = this.WarningView.GetFormMessage();
-            if (formMessage.Body is MessageBodyOfWarningForm)
+            //Проверяем ,что это наше сообщение и не пустое...
+            if (formMessage.Body is MessageBodyOfWarningForm && !string.IsNullOrEmpty((formMessage.Body as MessageBodyOfWarningForm).MessageText))
             {
                 MessageBodyOfWarningForm messageBodyOfWarningForm = (formMessage.Body as MessageBodyOfWarningForm);
                 this.WarningView.ShowWarningMessage(messageBodyOfWarningForm.MessageText);
