@@ -66,6 +66,7 @@
     <Compile Include="Logic\AppGlobalContext.cs" />
     <Compile Include="Logic\FormHelper.cs" />
     <Compile Include="Models\FormTypes.cs" />
+    <Compile Include="Models\MessageBodyOfWarningForm.cs" />
     <Compile Include="Models\TransparentLabel.cs">
       <SubType>Component</SubType>
     </Compile>

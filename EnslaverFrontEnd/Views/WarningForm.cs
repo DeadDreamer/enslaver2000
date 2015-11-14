@@ -35,7 +35,7 @@ namespace EnslaverFrontEnd.Views
         private FormMessage formMessage = null;
 
         private void InitThisForm(FormMessage someMessage)
-        {            
+        {
             formMessage = someMessage;
             Presenter = new EnslaverFrontEnd.Presenters.WarningFormPresenter(this);
             InitializeComponent();
@@ -54,7 +54,7 @@ namespace EnslaverFrontEnd.Views
 
         public void ShowVideo(string uri)
         {
-            throw new NotImplementedException();
+            //Тут добавим проигрывание видео
         }
 
         private void WarningForm_FormClosing(object sender, FormClosingEventArgs e)

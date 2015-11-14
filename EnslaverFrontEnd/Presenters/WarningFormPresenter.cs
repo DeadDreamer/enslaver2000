@@ -27,9 +27,11 @@ namespace EnslaverFrontEnd.Presenters
         void View_Init(object sender, EventArgs e)
         {
             FormMessage formMessage = this.WarningView.GetFormMessage();
-            if (formMessage.Body is string)
+            if (formMessage.Body is MessageBodyOfWarningForm)
             {
-                this.WarningView.ShowWarningMessage(formMessage.Body as string);
+                MessageBodyOfWarningForm messageBodyOfWarningForm = (formMessage.Body as MessageBodyOfWarningForm);
+                this.WarningView.ShowWarningMessage(messageBodyOfWarningForm.MessageText);
+                this.WarningView.ShowVideo(messageBodyOfWarningForm.PathToVideoFile);
             }
             else
             {
