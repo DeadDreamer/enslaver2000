@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Configuration;
 
 namespace EnslaverFrontEnd.Logic
 {
@@ -13,6 +14,7 @@ namespace EnslaverFrontEnd.Logic
     {
         //Здесь будет хранится  тот, чей компьютер
         public string Owner = "";
+        public bool IsDebug = false;
 
         public static IntPtr FileMapHandler = IntPtr.Zero, HandlerOfMapView = IntPtr.Zero;
 
@@ -44,6 +46,7 @@ namespace EnslaverFrontEnd.Logic
         public AppGlobalContext()
         {
 
+            Owner = ConfigurationManager.AppSettings["owner"];
         }
 
         public Type GetTypeByID(long formTypeID)
@@ -88,7 +91,7 @@ namespace EnslaverFrontEnd.Logic
         {
             var type = GetTypeByID(formTypeID);
             var result = (BaseForm)Activator.CreateInstance(type, this, formMessage);
-            result.TypeID = formTypeID;          
+            result.TypeID = formTypeID;
             return result;
         }
 
@@ -100,7 +103,8 @@ namespace EnslaverFrontEnd.Logic
             {
                 if (_startForm == null)
                 {
-                    _startForm = new MainForm(this);
+                    _startForm = new MainForm(this) { Visible = IsDebug};
+
                 }
                 return _startForm;
             }
@@ -111,6 +115,14 @@ namespace EnslaverFrontEnd.Logic
             CamHelper.Stop();
             AllowExit = true;
             System.Windows.Forms.Application.Exit();
+        }
+    }
+
+    public static class StringExtensions
+    {
+        public static string FormatWithOwner(this string format)
+        {
+            return string.Format(format, AppGlobalContext.GetInstance().Owner);
         }
     }
 }

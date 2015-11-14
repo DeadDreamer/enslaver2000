@@ -49,7 +49,7 @@ namespace EnslaverCore.Logic.Sound
             }
         }
 
-        public Stream GetSoundStream(string url)
+        public string GetChachedFileName(string url)
         {
             lock (typeof(SoundStorage))
             {
@@ -69,7 +69,15 @@ namespace EnslaverCore.Logic.Sound
                     this.cache.Add(url, fileName);
                 }
 
-                return File.OpenRead(this.cache[url]);
+                return fileName;
+            }
+        }
+
+        public Stream GetSoundStream(string url)
+        {
+            lock (typeof(SoundStorage))
+            {
+                return File.OpenRead(this.GetChachedFileName(url));
             }
         }
     }

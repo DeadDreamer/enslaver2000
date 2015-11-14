@@ -40,16 +40,19 @@ namespace EnslaverFrontEnd.Presenters
                     this.WarningView.ShowVideo(messageBodyOfWarningForm.PathToVideoFile);
                 }
                 else this.WarningView.HidePlayer();
-                Speaker.BeginSay(messageBodyOfWarningForm.MessageText,5000);
-
+                Speaker.BeginSay(messageBodyOfWarningForm.MessageText, 5000);
             }
             else
             {
-                string defaultMessage=string.Format("{0}, вернитесь на рабочее место!", AppGlobalContext.GetInstance().Owner);
+                string defaultMessage = "{0}, вернитесь на рабочее место!".FormatWithOwner();
                 this.WarningView.ShowWarningMessage(defaultMessage);
-				Speaker.BeginSay(defaultMessage,5000);
+                Speaker.BeginSay(new List<Phrase>
+                    {
+                        new Phrase(defaultMessage),
+                        new Phrase("{0}, все должны работать!".FormatWithOwner(), Emotion.Neutral),
+                        new Phrase("{0}, я тебя очень жду!".FormatWithOwner(), Emotion.Good)
+                    }, 5000);
             }
-
         }
 
         public IWarningView WarningView { get; set; }

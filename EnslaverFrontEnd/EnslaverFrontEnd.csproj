@@ -41,10 +41,20 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\ExtResources\AForge.NET Framework-2.2.5-(libs only)\Release\AForge.Video.DirectShow.dll</HintPath>
     </Reference>
+    <Reference Include="Emgu.CV">
+      <HintPath>..\ExtResources\Emgu\Emgu.CV.dll</HintPath>
+    </Reference>
+    <Reference Include="Emgu.CV.UI">
+      <HintPath>..\ExtResources\Emgu\Emgu.CV.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="Emgu.Util">
+      <HintPath>..\ExtResources\Emgu\Emgu.Util.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -67,6 +77,7 @@
     <Compile Include="Logic\AppGlobalContext.cs" />
     <Compile Include="Logic\FormHelper.cs" />
     <Compile Include="Models\FormTypes.cs" />
+    <Compile Include="Models\MessageBodyOfLoginForm.cs" />
     <Compile Include="Models\MessageBodyOfWarningForm.cs" />
     <Compile Include="Models\TransparentLabel.cs">
       <SubType>Component</SubType>
@@ -208,6 +219,17 @@
       <Isolated>False</Isolated>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="haarcascade_eye.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="haarcascade_frontalface_default.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="haarcascade_smile.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

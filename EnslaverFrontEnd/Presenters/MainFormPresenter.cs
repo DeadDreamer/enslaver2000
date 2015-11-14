@@ -23,8 +23,8 @@ namespace EnslaverFrontEnd.Presenters
 
         void MainFormPresenter_OnAdminClick(object sender, EventArgs e)
         {
-            
-            AppGlobalContext.GetInstance().ShowForm(null, (long)FormTypes.AdminForm, new FormMessage() { });
+            AppGlobalContext.GetInstance().ShowSingletoneForm(null, (long)FormTypes.LoginForm, new FormMessage() { Body=new MessageBodyOfLoginForm(FormTypes.AdminForm) });
+            //AppGlobalContext.GetInstance().ShowForm(null, (long)FormTypes.AdminForm, new FormMessage() { });
         }
 
         void CamHelper_OnNewFrame(object sender, EnslaverCore.Logic.CamEvent e)

@@ -37,7 +37,8 @@
             this.ClientSize = new System.Drawing.Size(284, 262);
             this.Name = "BaseForm";
             this.Text = "Form1";         
-            this.ResumeLayout(false);          
+            this.ResumeLayout(false);
+            this.Visible = false;
         }
 
         #endregion

@@ -117,6 +117,29 @@ namespace EnslaverFrontEnd.Logic
             return CurrentForm;
         }
 
+        /*
+        /// <summary>
+        /// Переход на форму с удалением той, что создала запрос
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="formTypeID"></param>
+        /// <param name="formMessage"></param>
+        /// <returns></returns>
+        public virtual BaseForm MoveToForm(Guid guid, long formTypeID)
+        {
+            BaseForm CurrentForm = null;
+            CurrentForm = CreateForm(formTypeID, null);
+            MainApplicationContext.MainForm = CurrentForm;            
+                CurrentForm.SenderGuid = guid;
+            DicOfForms[CurrentForm.Guid] = CurrentForm;
+            if (sender != null)
+            {
+                DicOfForms.Remove(guid);
+                sender.Close();
+            }
+            CurrentForm.Show();
+            return CurrentForm;
+        }*/
 
 
         /// <summary>

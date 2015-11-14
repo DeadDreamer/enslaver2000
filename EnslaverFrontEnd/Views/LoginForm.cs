@@ -15,25 +15,28 @@ namespace EnslaverFrontEnd.Views
 {
     public partial class LoginForm : BaseForm, ILoginView
     {
+        private FormMessage formMessage = null;
+
         public LoginForm()
         {
-            InitThisForm();
+            InitThisForm(null);
         }
 
         public LoginForm(FormFactory currentFormFactory)
             : base(currentFormFactory)
         {
-            InitThisForm();
+            InitThisForm(null);
         }
 
         public LoginForm(FormFactory currentFormFactory, FormMessage formMessage)
             : base(currentFormFactory)
         {
-            InitThisForm();
+            InitThisForm(formMessage);
         }
 
-        private void InitThisForm()
+        private void InitThisForm(FormMessage someMessage)
         {
+            formMessage = someMessage;
             Presenter = new EnslaverFrontEnd.Presenters.LoginFormPresenter(this);
             InitializeComponent();
             TryRaiseEvent(Init, EventArgs.Empty);
@@ -60,6 +63,18 @@ namespace EnslaverFrontEnd.Views
         public void ShowMessage(string message)
         {
             MessageLabel.Text = message;
+        }
+
+
+        public FormMessage GetFormMessage()
+        {           
+            return formMessage;
+        }
+
+
+        public void CloseView()
+        {
+            ForceClose();
         }
     }
 }

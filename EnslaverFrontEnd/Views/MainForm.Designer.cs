@@ -1,5 +1,6 @@
 ﻿using System.Drawing;
 using System.Windows.Forms;
+using EnslaverFrontEnd.Logic;
 namespace EnslaverFrontEnd.Views
 {
     partial class MainForm
@@ -17,6 +18,7 @@ namespace EnslaverFrontEnd.Views
         /// </summary>
         private void InitializeComponent()
         {
+            CustomSettings();
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.NotifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
@@ -136,10 +138,11 @@ namespace EnslaverFrontEnd.Views
             this.Text = "MainForm";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.MainForm_Load);
+            this.VisibleChanged += new System.EventHandler(this.MainForm_VisibleChanged);
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
-
+            CustomSettings();
         }
 
 
@@ -147,8 +150,15 @@ namespace EnslaverFrontEnd.Views
 
         public void CustomSettings()
         {
-            CenterToScreen();     
+            //For Debug only
+
+            /*CenterToScreen();     
             BackColor = Color.White;
+            this.ShowInTaskbar = false;
+             * */
+
+            this.Visible = AppGlobalContext.GetInstance().IsDebug;
+
         }
 
 
