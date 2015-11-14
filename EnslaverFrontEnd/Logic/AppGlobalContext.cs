@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Configuration; 
 
 namespace EnslaverFrontEnd.Logic
 {
@@ -44,6 +45,7 @@ namespace EnslaverFrontEnd.Logic
         public AppGlobalContext()
         {
 
+            Owner = ConfigurationManager.AppSettings["owner"];
         }
 
         public Type GetTypeByID(long formTypeID)
