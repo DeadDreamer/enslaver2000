@@ -44,16 +44,8 @@ namespace EnslaverFrontEnd.Views
         }
 
         private void InitEmgu()
-        {            
-            try
-            {
-                CvInvoke.UseOpenCL = false;
-                _capture = new Capture();
-            }
-            catch (NullReferenceException excpt)
-            {
-                MessageBox.Show(excpt.Message);
-            }
+        {
+            InitializeComponent();
         }
 
         public event EventHandler<EventArgs> Init;
