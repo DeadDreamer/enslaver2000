@@ -29,7 +29,7 @@ namespace EnslaverCore.Logic.Sound
         private static SoundStorage Storage = new SoundStorage();
 
         private static void Pronounce(string text, bool sync)
-        {
+        {            
             Url.Text = text;
             var sound = Storage.GetSoundStream(Url.ToString());
 

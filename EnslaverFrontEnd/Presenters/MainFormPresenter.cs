@@ -25,6 +25,7 @@ namespace EnslaverFrontEnd.Presenters
             (this.View as IMainView).OnChangeCamDevice += MainFormPresenter_OnChangeCamDevice;
             (this.View as IMainView).OnStartOrStopClick += MainFormPresenter_OnStartOrStopClick;
             (this.View as IMainView).OnAdminClick += new EventHandler<EventArgs>(MainFormPresenter_OnAdminClick);
+            (this.View as IMainView).OnTimerTick += new EventHandler<EventArgs>(MainFormPresenter_OnTimerTick);
 
        //     timer.Elapsed += new System.Timers.ElapsedEventHandler(timer_Elapsed);
         //    timer.Start();
@@ -32,8 +33,7 @@ namespace EnslaverFrontEnd.Presenters
             AppGlobalContext.GetInstance().CamHelper.OnNewFrame += CamHelper_OnNewFrame;
         }
 
-
-        void timer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
+        void MainFormPresenter_OnTimerTick(object sender, EventArgs e)
         {
             bool needToShowWarningForm = false;
             string messageInfo = "";
@@ -64,26 +64,37 @@ namespace EnslaverFrontEnd.Presenters
                         break;
                 }
                 userStatusChecker.ResetCounters();
+                List<BaseForm> forms = AppGlobalContext.GetInstance().FindFormsByType((long)FormTypes.WarningForm);
                 if (needToShowWarningForm)
                 {
-                    List<BaseForm> forms = AppGlobalContext.GetInstance().FindFormsByType((long)FormTypes.WarningForm);
+                   
                     if (forms != null && forms.Count > 0)
                     {
+                        return;
                         //Закрываем формы
-                        forms.ForEach(c => c.ForceClose());
+                        //forms.ForEach(c => c.ForceClose());
                     }
 
                     //Показываем новую форму...
-                    object messageBody = (object)(new MessageBodyOfWarningForm(messageInfo, ""));
-                    System.Threading.Thread thread = new System.Threading.Thread(() =>
+                    object messageBody = (object)(new MessageBodyOfWarningForm(messageInfo, uriToVideoPath));
+                    AppGlobalContext.GetInstance().ShowForm(null, (long)FormTypes.WarningForm, new FormMessage() { Body = messageBody });                    
+                }
+                else 
+                {
+                    if (forms != null && forms.Count > 0)
                     {
-                        AppGlobalContext.GetInstance().ShowForm(null, (long)FormTypes.WarningForm, new FormMessage() { Body = messageBody });
-                    });
-                    thread.SetApartmentState(System.Threading.ApartmentState.STA);
-                    thread.Start();
-
+                     
+                        //Закрываем формы
+                        forms.ForEach(c => c.ForceClose());
+                    }
                 }
             }
+        }
+
+
+        void timer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
+        {
+            
         }
 
         void Application_Idle(object sender, EventArgs e)

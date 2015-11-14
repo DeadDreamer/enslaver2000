@@ -15,7 +15,7 @@ namespace EnslaverFrontEnd.Logic
         //Здесь будет хранится  тот, чей компьютер
         public string Owner = "";
         public bool IsDebug = false;
-        public double TimerPeriodInMilSec = 4.0;
+        public int TimerPeriodInMilSec = 4000;
 
         public static IntPtr FileMapHandler = IntPtr.Zero, HandlerOfMapView = IntPtr.Zero;
 
