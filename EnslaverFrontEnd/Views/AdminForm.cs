@@ -11,6 +11,7 @@ using Emgu.CV.CvEnum;
 using System.IO;
 using System.Diagnostics;
 using System.Threading;
+using EnslaverCore;
 
 namespace EnslaverFrontEnd.Views
 {
@@ -145,9 +146,17 @@ namespace EnslaverFrontEnd.Views
             }
         }
 
+        public static List<HeadInformation> _lastInfo = null;
 
-        void FrameGrabber(object sender, EventArgs e)
+        public static List<HeadInformation> GetLastInfo()
         {
+            return _lastInfo;
+        }
+
+        public void FrameGrabber(object sender, EventArgs e)
+        {
+            _lastInfo = new List<HeadInformation>();
+
             CountOfFacesLabel.Text = "0";
             //label4.Text = "";
             NamePersons.Add("");
@@ -214,6 +223,7 @@ namespace EnslaverFrontEnd.Views
                    new Size(20, 20));
                 gray.ROI = Rectangle.Empty;
 
+
                 foreach (MCvAvgComp ey in eyesDetected[0])
                 {
                     Rectangle eyeRect = ey.rect;
@@ -249,13 +259,36 @@ namespace EnslaverFrontEnd.Views
                    new Size(20, 20));
                 gray.ROI = Rectangle.Empty;
 
+                HeadInformation hi = new HeadInformation();
+                hi.IsSmile = false;
+
                 foreach (MCvAvgComp ey in smileDetected[0])
                 {
                     Rectangle smileRect = ey.rect;
                     smileRect.Offset(f.rect.X, f.rect.Y);
                     currentFrame.Draw(smileRect, new Bgr(Color.Black), 2);
                     currentFrame.Draw("smile", ref font, new Point(smileRect.X, smileRect.Y), new Bgr(Color.Red));
+                    hi.IsSmile = true;
                 }
+
+
+                hi.Head = f.rect;
+                if (eyesDetected[0] != null && eyesDetected[0].Length > 0)
+                {
+                    if (eyesDetected[0].Length == 1)
+                    {
+                        hi.Eye1 = eyesDetected[0][0].rect;
+                    }
+                    if (eyesDetected[0].Length == 2)
+                    {
+                        hi.Eye1 = eyesDetected[0][0].rect;
+                        hi.Eye2 = eyesDetected[0][1].rect;
+                    }
+                }
+              
+                hi.Name = name;
+
+                _lastInfo.Add(hi);
             }
 
             t = 0;

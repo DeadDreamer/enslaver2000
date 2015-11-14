@@ -10,6 +10,7 @@ using EnslaverCore.Logic.Sound;
 using EnslaverCore;
 using System.IO;
 using EnslaverCore.Logic;
+using EnslaverFrontEnd.Views;
 
 
 namespace EnslaverFrontEnd.Presenters
@@ -31,8 +32,8 @@ namespace EnslaverFrontEnd.Presenters
 
             //     timer.Elapsed += new System.Timers.ElapsedEventHandler(timer_Elapsed);
             //    timer.Start();
-           // System.Windows.Forms.Application.Idle += new EventHandler(Application_Idle);
-            AppGlobalContext.GetInstance().CamHelper.OnNewFrame += CamHelper_OnNewFrame;
+            System.Windows.Forms.Application.Idle += new EventHandler(Application_Idle);
+            //AppGlobalContext.GetInstance().CamHelper.OnNewFrame += CamHelper_OnNewFrame;
         }
 
         void MainFormPresenter_OnBlinkTimerTick(object sender, EventArgs e)
@@ -107,7 +108,7 @@ namespace EnslaverFrontEnd.Presenters
         {
             lock (lockObject)
             {
-                List<HeadInformation> headInformation = EnslaverCore.Brain.GetInformation();
+                List<HeadInformation> headInformation = AdminForm.GetLastInfo();
                 userStatusChecker.CheckFrame(headInformation);
             }
         }

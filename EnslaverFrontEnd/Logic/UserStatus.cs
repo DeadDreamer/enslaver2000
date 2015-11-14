@@ -36,6 +36,8 @@ namespace EnslaverFrontEnd.Logic
 
         public void CheckFrame(List<HeadInformation> heads)
         {
+            if (heads == null) return;
+
             foreach (HeadInformation h in heads)
             {
                 foreach (User u in users)
