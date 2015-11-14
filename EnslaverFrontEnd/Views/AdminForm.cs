@@ -455,10 +455,13 @@ namespace EnslaverFrontEnd.Views
         
         public void CloseView()
         {
-            this.Hide();
-            //Application.Idle -= new EventHandler(FrameGrabber);
-
-            //ForceClose();
+       
+        }
+        
+        protected override void OnClosed(EventArgs e)
+        {
+        //    e.
+          //  this.Hide();
         }
     }
 }

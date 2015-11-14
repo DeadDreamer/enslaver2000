@@ -173,7 +173,14 @@
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(AdminForm_FormClosing);
 
+        }
+
+        void AdminForm_FormClosing(object sender, System.Windows.Forms.FormClosingEventArgs e)
+        {            
+            this.Hide();
+            e.Cancel = true;
         }
 
         #endregion
