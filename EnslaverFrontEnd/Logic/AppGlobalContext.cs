@@ -21,7 +21,7 @@ namespace EnslaverFrontEnd.Logic
 
         public static IntPtr FileMapHandler = IntPtr.Zero, HandlerOfMapView = IntPtr.Zero;
 
-        public CamHelper CamHelper = new CamHelper();
+     //public CamHelper CamHelper = new CamHelper();
 
         // public SoundHelper SoundHelper = new SoundHelper();
 
@@ -122,7 +122,7 @@ namespace EnslaverFrontEnd.Logic
 
         public void Exit()
         {
-            CamHelper.Stop();
+           // CamHelper.Stop();
             AllowExit = true;
             System.Windows.Forms.Application.Exit();
         }

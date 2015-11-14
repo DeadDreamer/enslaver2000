@@ -136,14 +136,14 @@ namespace EnslaverFrontEnd.Presenters
             //AppGlobalContext.GetInstance().ShowForm(null, (long)FormTypes.AdminForm, new FormMessage() { });
         }
 
-        void CamHelper_OnNewFrame(object sender, EnslaverCore.Logic.CamEvent e)
+     /*   void CamHelper_OnNewFrame(object sender, EnslaverCore.Logic.CamEvent e)
         {
             (this.View as IMainView).SetCurrentBitmap(e.BitmapFromCam);
-        }
+        }*/
 
         void MainFormPresenter_OnStartOrStopClick(object sender, EventArgs e)
         {
-            if (AppGlobalContext.GetInstance().CamHelper.IsActive)
+       /*     if (AppGlobalContext.GetInstance().CamHelper.IsActive)
             {
                 AppGlobalContext.GetInstance().CamHelper.Stop();
             }
@@ -151,22 +151,22 @@ namespace EnslaverFrontEnd.Presenters
             {
                 AppGlobalContext.GetInstance().CamHelper.Start();
             }
-            (this.View as IMainView).SetCamIsActive(AppGlobalContext.GetInstance().CamHelper.IsActive);
+        /*    (this.View as IMainView).SetCamIsActive(AppGlobalContext.GetInstance().CamHelper.IsActive);*/
         }
 
         void MainFormPresenter_OnChangeCamDevice(object sender, EventArgs e)
         {
-            var selectedDevice = (this.View as IMainView).GetCurrentDevice();
+        /*    var selectedDevice = (this.View as IMainView).GetCurrentDevice();
             if (selectedDevice != null)
             {
                 AppGlobalContext.GetInstance().CamHelper.SelectCamDeviceByMonikerString(selectedDevice.MonikerString);
                 (this.View as IMainView).SetCamIsActive(AppGlobalContext.GetInstance().CamHelper.IsActive);
-            }
+            }*/
         }
 
         public override void OnView_Init(object sender, EventArgs e)
         {
-            (this.View as IMainView).SetCamDevices(AppGlobalContext.GetInstance().CamHelper.GetListOfDevices());
+           /* (this.View as IMainView).SetCamDevices(AppGlobalContext.GetInstance().CamHelper.GetListOfDevices());*/
 
             Speaker.Say("Поработитель запущен");
         }
