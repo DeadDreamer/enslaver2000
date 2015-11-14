@@ -48,6 +48,7 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Windows" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
@@ -62,6 +63,9 @@
     <Compile Include="Logic\SharedMemoryHelper.cs" />
     <Compile Include="Logic\SimpleFileLogger.cs" />
     <Compile Include="Logic\SoundHelper.cs" />
+    <Compile Include="Logic\Sound\SoundStorage.cs" />
+    <Compile Include="Logic\Sound\Speaker.cs" />
+    <Compile Include="Logic\Sound\YandexSpeechKitCloudUrl.cs" />
     <Compile Include="Models\Constants.cs" />
     <Compile Include="Models\LogType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

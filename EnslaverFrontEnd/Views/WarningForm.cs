@@ -59,6 +59,11 @@ namespace EnslaverFrontEnd.Views
             WarningLabel.Text = text;
         }
 
+        public void HidePlayer()
+        {
+            axWindowsMediaPlayer1.Visible = false;
+        }
+
         public event EventHandler<EventArgs> Init;
 
         public event EventHandler<EventArgs> ExitClick;
