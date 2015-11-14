@@ -45,26 +45,30 @@ namespace EnslaverFrontEnd.Presenters
         {
             RunAdminFormAsSingletoneGhostForm();
             bool needToShowWarningForm = false;
-            string messageInfo = "";
+            //Phrase[] messageInfo;
             string uriToVideoPath = "";
+
             lock (lockObject)
             {
-                UserStates userStatus = userStatusChecker.GetUserStatus(AppGlobalContext.GetInstance().Owner);
+                UserStates userStatus = userStatusChecker.GetUserStatus(AppGlobalContext.GetInstance().OwnerId);
+
+                var messageInfo = PhrasesConfig.GetPhrases(userStatus);
+
                 switch (userStatus)
                 {
                     case UserStates.HeadNotFound:
                         needToShowWarningForm = true;
-                        messageInfo = "{0}, вернитесь на рабочее место!".FormatWithOwner();
+                        //"{0}, вернитесь на рабочее место!".FormatWithOwner();
                         uriToVideoPath = Directory.GetCurrentDirectory() + "\\Resources\\eyeSauron.mp4";
                         break;
                     case UserStates.EyesNotFound:
                         needToShowWarningForm = true;
-                        messageInfo = "{0}, смотрите в монитор!".FormatWithOwner();
+                        //messageInfo = "{0}, смотрите в монитор!".FormatWithOwner();
                         uriToVideoPath = Directory.GetCurrentDirectory() + "\\Resources\\eyeSauron.mp4";
                         break;
                     case UserStates.Smiling:
                         needToShowWarningForm = true;
-                        messageInfo = "{0}, перестаньте улыбаться!".FormatWithOwner();
+                        //messageInfo = "{0}, перестаньте улыбаться!".FormatWithOwner();
                         uriToVideoPath = Directory.GetCurrentDirectory() + "\\Resources\\eyeSauron.mp4";
                         break;
                     case UserStates.Fine:

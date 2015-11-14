@@ -30,17 +30,23 @@ namespace EnslaverFrontEnd.Presenters
         {
             FormMessage formMessage = this.WarningView.GetFormMessage();
             //Проверяем ,что это наше сообщение и не пустое...
-            if (formMessage.Body is MessageBodyOfWarningForm && !string.IsNullOrEmpty((formMessage.Body as MessageBodyOfWarningForm).MessageText))
-            {
-                MessageBodyOfWarningForm messageBodyOfWarningForm = (formMessage.Body as MessageBodyOfWarningForm);
-                this.WarningView.ShowWarningMessage(messageBodyOfWarningForm.MessageText);
 
-                if (!string.IsNullOrEmpty(messageBodyOfWarningForm.PathToVideoFile)) //проверка наличия видео
+            var message = formMessage.Body as MessageBodyOfWarningForm;
+
+            if (message != null && message.MessageText.Length > 0)
+            {                
+                this.WarningView.ShowWarningMessage(message.MessageText[0].Text);
+
+                if (!string.IsNullOrEmpty(message.PathToVideoFile)) //проверка наличия видео
                 {
-                    this.WarningView.ShowVideo(messageBodyOfWarningForm.PathToVideoFile);
+                    this.WarningView.ShowVideo(message.PathToVideoFile);
                 }
-                else this.WarningView.HidePlayer();
-                Speaker.BeginSay(messageBodyOfWarningForm.MessageText, 5000);
+                else
+                {
+                    this.WarningView.HidePlayer();
+                }
+
+                Speaker.BeginSay(message.MessageText, 5000);
             }
             else
             {

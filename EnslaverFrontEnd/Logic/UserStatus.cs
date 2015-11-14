@@ -14,7 +14,7 @@ namespace EnslaverFrontEnd.Logic
         public int eyesFound = 0;
         public int smiling = 0;
         public bool isBlinked = false;
- 
+
 
         public User(string name)
         {
@@ -29,20 +29,25 @@ namespace EnslaverFrontEnd.Logic
 
     class UserStatus
     {
-        private List<User> users=new List<User>();
+        private List<User> users = new List<User>()
+        {
+            new User(AppGlobalContext.GetInstance().OwnerId)
+        };
+
         int frameCounter;
         DateTime last = DateTime.Now;
-        const int accuracyMargin = 90;
+        const int accuracyMargin = 50;
 
         public void CheckFrame(List<HeadInformation> heads)
         {
+            frameCounter++;
+
             if (heads == null) return;
 
             foreach (HeadInformation h in heads)
             {
                 foreach (User u in users)
                 {
-                    frameCounter++;
                     if (u.name == h.Name)
                     {
                         u.headFound++;

@@ -14,6 +14,7 @@ namespace EnslaverFrontEnd.Logic
     {
         //Здесь будет хранится  тот, чей компьютер
         public string Owner = string.Empty;
+        public string OwnerId = string.Empty;
         public bool IsDebug = false;
         public int TimerPeriodInMilSec = 4000;
         public int TimerBlinkPeriodInMilSec = 4000;
@@ -47,11 +48,13 @@ namespace EnslaverFrontEnd.Logic
         public AppGlobalContext()
         {
             Owner = ConfigurationManager.AppSettings["owner"];
+            OwnerId = ConfigurationManager.AppSettings["ownerId"];
+
             PhrasesConfig.Load(Path.Combine(Directory.GetCurrentDirectory(), ConfigurationManager.AppSettings["phrasesConfig"]));
 
-            var phrases = new List<Phrase>(PhrasesConfig.AllPhrases)
-                .Select(phrase => new Phrase { Emotion = phrase.Emotion, Text = this.FormatWithOwner(phrase.Text) })
-                .ToList();
+            var phrases = new List<Phrase>(PhrasesConfig.AllPhrases);
+                //.Select(phrase => new Phrase { Emotion = phrase.Emotion, Text = this.FormatWithOwner(phrase.Text) })
+                //.ToList();
 
             Speaker.CachePhrases(phrases);
         }
